@@ -1,3 +1,11 @@
+import { Button, useColorMode } from '@chakra-ui/react'
+
 export const Home = () => {
-	return <div>Home</div>
+	const { colorMode, toggleColorMode } = useColorMode()
+
+	return (
+		<div>
+			<Button onClick={toggleColorMode}>{colorMode}</Button>
+		</div>
+	)
 }

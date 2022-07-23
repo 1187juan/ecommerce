@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Home } from '../pages'
+import { Error404, Home } from '../pages'
 import { GeneralRoutes } from './GeneralRoutes'
 import { PrivateRoutes } from './PrivateRoutes'
 import { PublicRoutes } from './PublicRoutes'
@@ -10,7 +10,7 @@ export const AppRouter = () => {
 			<Routes>
 				<Route element={<GeneralRoutes />}>
 					<Route path='/' element={<Home />} />
-					<Route path='*' element={<div>error 404</div>} />
+					<Route path='*' element={<Error404 />} />
 				</Route>
 				<Route element={<PublicRoutes />}>
 					<Route path='/login' element={<div>login</div>} />

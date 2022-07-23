@@ -42,7 +42,7 @@ export const semanticTokens = {
 		},
 		surface: {
 			default: 'hsl(0 0% 96%)',
-			_dark: 'hsl(0 0% 16%)',
+			_dark: 'hsl(192 16% 16%)',
 		},
 	},
 }
