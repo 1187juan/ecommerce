@@ -4,7 +4,14 @@ import { Logo } from './Logo'
 
 export const HeaderLogo = () => {
 	return (
-		<Box as='header' pos='sticky' top={0} height='3.5rem' bgColor='surface'>
+		<Box
+			as='header'
+			pos='sticky'
+			top={0}
+			zIndex={2}
+			height='3.5rem'
+			bgColor='surface'
+		>
 			<Flex
 				as='nav'
 				height='100%'

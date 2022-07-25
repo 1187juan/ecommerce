@@ -1,3 +1,5 @@
 export { HeaderLogo } from './HeaderLogo'
 export { Logo } from './Logo'
 export { Banner } from './Banner'
+export { ProductCard } from './ProductCard'
+export { Footer } from './Footer'

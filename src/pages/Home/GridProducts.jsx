@@ -1,6 +1,6 @@
 import { Grid } from '@chakra-ui/react'
 import products from '../../data/products.json'
-import { ProductCard } from './ProductCard'
+import { ProductCard } from '../../components'
 
 export const GridProducts = () => {
 	return (
