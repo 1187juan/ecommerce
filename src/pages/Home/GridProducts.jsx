@@ -5,10 +5,12 @@ import { ProductCard } from '../../components'
 export const GridProducts = () => {
 	return (
 		<Grid
-			w='min(100% - 2rem, 992px)'
-			mx='auto'
-			templateColumns='repeat(auto-fill, minmax(min(100%, 250px), 1fr))'
-			gap='1rem'
+			sx={{
+				gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 250px), 1fr))',
+				gap: '1rem',
+				width: 'min(100% - 2rem, 992px)',
+				margin: '0 auto',
+			}}
 		>
 			{products.map(product => (
 				<ProductCard key={product.id} {...product} />

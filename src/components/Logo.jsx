@@ -1,8 +1,14 @@
 import { Heading } from '@chakra-ui/react'
 
-export const Logo = props => {
+export const Logo = ({ sx, ...props }) => {
 	return (
-		<Heading letterSpacing={-2} {...props}>
+		<Heading
+			sx={{
+				letterSpacing: -2,
+				...sx,
+			}}
+			{...props}
+		>
 			LOGO
 		</Heading>
 	)

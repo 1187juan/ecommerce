@@ -7,10 +7,10 @@ import { ButtonDirection } from './ButtonDirection'
 
 const CarouselCustom = styled(ScrollingCarousel)({
 	'& .styles-module_slider__o0fqa': {
+		gap: '1rem',
 		width: 'calc(100% + 2rem)',
 		marginLeft: '-1rem',
 		padding: '1rem',
-		gap: '1rem',
 	},
 })
 
@@ -20,14 +20,27 @@ export const CarouselSimilarProducts = ({ productId }) => {
 		.slice(0, 10)
 
 	return (
-		<Box w='min(100%, 992px)' m='0 auto 1rem' p='1rem 1rem 0' bgColor='surface'>
+		<Box
+			sx={{
+				width: 'min(100%, 992px)',
+				margin: '0 auto 1rem',
+				padding: '1rem 1rem 0',
+				backgroundColor: 'surface',
+			}}
+		>
 			<Heading>Más productos</Heading>
 			<CarouselCustom
 				leftIcon={<ButtonDirection direction='left' />}
 				rightIcon={<ButtonDirection direction='right' />}
 			>
 				{similarProducts.map((similarProduct, index) => (
-					<ProductCard key={index} {...similarProduct} w='35vmin' />
+					<ProductCard
+						key={index}
+						{...similarProduct}
+						sx={{
+							width: '35vmin',
+						}}
+					/>
 				))}
 			</CarouselCustom>
 		</Box>

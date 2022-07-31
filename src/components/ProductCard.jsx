@@ -1,23 +1,48 @@
 import { Flex, Grid, Image, Text } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 
-export const ProductCard = ({ name, images, price, id, ...props }) => {
+export const ProductCard = ({ name, images, price, id, sx, ...props }) => {
+	const description = images[0].description
+	const imageUrl = images[0].url
+
 	return (
 		<Grid
 			as='article'
-			bgColor='surface'
-			borderRadius='base'
-			shadow='xl'
+			sx={{
+				backgroundColor: 'surface',
+				borderRadius: 'base',
+				shadow: 'xl',
+				...sx,
+			}}
 			{...props}
 		>
 			<Link to={'/product/' + id}>
-				<Image src={images[0].url} alt={images[0].description} />
+				<Image src={imageUrl} alt={description} />
 			</Link>
-			<Flex columnGap='1rem' p='1rem' flexWrap='wrap'>
-				<Text as='h1' flex='1 1 150px' fontSize='base' noOfLines={1}>
+			<Flex
+				sx={{
+					columnGap: '1rem',
+					padding: '1rem',
+					flexWrap: 'wrap',
+				}}
+			>
+				<Text
+					as='h1'
+					sx={{
+						flex: '1 1 150px',
+						fontSize: 'base',
+						noOfLines: 1,
+					}}
+				>
 					{name}
 				</Text>
-				<Text fontWeight={700}>{price}</Text>
+				<Text
+					sx={{
+						fontWeight: 700,
+					}}
+				>
+					{price}
+				</Text>
 			</Flex>
 		</Grid>
 	)

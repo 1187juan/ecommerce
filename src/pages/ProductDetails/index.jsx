@@ -14,12 +14,13 @@ export const ProductDetails = () => {
 		<>
 			<HeaderLogo />
 			<Flex
-				width='min(100%, 992px)'
-				mx='auto'
-				my='1rem'
-				gap='1rem'
-				flexWrap='wrap'
-				bgColor='surface'
+				sx={{
+					flexWrap: 'wrap',
+					gap: '1rem',
+					width: 'min(100%, 992px)',
+					margin: '1rem auto',
+					backgroundColor: 'surface',
+				}}
 			>
 				<CarouselImages images={product.images} />
 				<Details {...product} />

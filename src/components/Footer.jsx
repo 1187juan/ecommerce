@@ -3,8 +3,18 @@ import { Logo } from './Logo'
 
 export const Footer = () => {
 	return (
-		<Flex height='35vmin' justifyContent='center' alignItems='center'>
-			<Logo opacity={0.5} />
+		<Flex
+			sx={{
+				height: '35vmin',
+				justifyContent: 'center',
+				alignItems: 'center',
+			}}
+		>
+			<Logo
+				sx={{
+					opacity: 0.5,
+				}}
+			/>
 		</Flex>
 	)
 }

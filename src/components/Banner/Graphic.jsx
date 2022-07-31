@@ -30,6 +30,7 @@ export const Graphic = () => {
 		product11,
 		product12,
 	]
+
 	return (
 		<Flex
 			sx={{

@@ -5,8 +5,8 @@ import { CarouselImage } from './CarouselImage'
 import { ButtonDirection } from './ButtonDirection'
 
 const CarouselCustom = styled(Carousel)({
-	minWidth: 'calc(300px - 1.5rem)',
 	flex: '1.5 0',
+	minWidth: 'calc(300px - 1.5rem)',
 })
 
 export const CarouselImages = ({ images }) => {
@@ -14,7 +14,9 @@ export const CarouselImages = ({ images }) => {
 	const isOneImage = quantityImages === 1
 
 	if (isOneImage)
-		return <OneImage url={images[0].url} description={images[0].description} />
+		return (
+			<OneImage imageUrl={images[0].url} description={images[0].description} />
+		)
 
 	return (
 		<CarouselCustom
@@ -29,7 +31,7 @@ export const CarouselImages = ({ images }) => {
 			{images.map((image, i) => (
 				<CarouselImage
 					key={i}
-					url={image.url}
+					imageUrl={image.url}
 					description={image.description}
 					badge={i + 1 + '/' + quantityImages}
 				/>

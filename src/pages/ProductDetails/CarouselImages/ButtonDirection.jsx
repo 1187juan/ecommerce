@@ -7,13 +7,15 @@ export const ButtonDirection = ({ direction = 'right' }) => {
 			variant='ghost'
 			colorScheme='gray'
 			icon={direction === 'right' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-			position='absolute'
-			top='50%'
-			right={direction === 'right' && '.5rem'}
-			left={direction === 'left' && '.5rem'}
-			zIndex={1}
-			display={['none', 'flex']}
-			transform='translateY(-50%)'
+			sx={{
+				position: 'absolute',
+				top: '50%',
+				right: direction === 'right' && '.5rem',
+				left: direction === 'left' && '.5rem',
+				zIndex: 1,
+				display: ['none', 'flex'],
+				transform: 'translateY(-50%)',
+			}}
 		/>
 	)
 }

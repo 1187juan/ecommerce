@@ -1,12 +1,25 @@
 import { Box, Badge, Image } from '@chakra-ui/react'
 
-export const CarouselImage = ({ badge, url, description = '' }) => {
+export const CarouselImage = ({ badge, imageUrl, description = '' }) => {
 	return (
-		<Box minW='300px' flexGrow={1} position='relative'>
-			<Badge position='absolute' top='1rem' right='1rem' colorScheme='gray'>
+		<Box
+			sx={{
+				position: 'relative',
+				flexGrow: 1,
+				minWidth: '300px',
+			}}
+		>
+			<Badge
+				colorScheme='gray'
+				sx={{
+					position: 'absolute',
+					top: '1rem',
+					right: '1rem',
+				}}
+			>
 				{badge}
 			</Badge>
-			<Image src={url} alt={description} />
+			<Image src={imageUrl} alt={description} />
 		</Box>
 	)
 }

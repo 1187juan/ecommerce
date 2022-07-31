@@ -5,16 +5,29 @@ export const Content = () => {
 	return (
 		<Grid
 			as='section'
-			w='min(100% - 2rem, 992px)'
-			minH='calc(100vh - 3.5rem)'
-			templateRows='50vmin max-content max-content'
-			justifyItems='center'
-			alignContent='center'
-			gap='1rem'
-			mx='auto'
+			sx={{
+				gridTemplateRows: '50vmin max-content max-content',
+				justifyItems: 'center',
+				alignContent: 'center',
+				gap: '1rem',
+				width: 'min(100% - 2rem, 992px)',
+				minHeight: 'calc(100vh - 3.5rem)',
+				margin: '0 auto',
+			}}
 		>
-			<Box as='img' src={error404Svg} alt='Error 404' height='100%' />
-			<Grid textAlign='center'>
+			<Box
+				as='img'
+				src={error404Svg}
+				alt='Error 404'
+				sx={{
+					height: '100%',
+				}}
+			/>
+			<Grid
+				sx={{
+					textAlign: 'center',
+				}}
+			>
 				<Heading as='h1'>Hmmm!</Heading>
 				<Text>No encontramos lo que buscabas.</Text>
 			</Grid>

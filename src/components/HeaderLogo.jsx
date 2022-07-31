@@ -6,18 +6,22 @@ export const HeaderLogo = () => {
 	return (
 		<Box
 			as='header'
-			pos='sticky'
-			top={0}
-			zIndex={2}
-			height='3.5rem'
-			bgColor='surface'
+			sx={{
+				position: 'sticky',
+				top: 0,
+				zIndex: 2,
+				height: '3.5rem',
+				backgroundColor: 'surface',
+			}}
 		>
 			<Flex
 				as='nav'
-				height='100%'
-				w='min(100% - 2rem, 992px)'
-				alignItems='center'
-				mx='auto'
+				sx={{
+					alignItems: 'center',
+					height: '100%',
+					width: 'min(100% - 2rem, 992px)',
+					margin: '0 auto',
+				}}
 			>
 				<Link to='/'>
 					<Logo />
