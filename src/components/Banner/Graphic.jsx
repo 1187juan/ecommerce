@@ -38,7 +38,7 @@ export const Graphic = () => {
 				top: 0,
 				justifyContent: 'center',
 				alignItems: 'center',
-				height: '100%',
+				height: '96%',
 				aspectRatio: '1 / 1',
 			}}
 		>

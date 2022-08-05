@@ -1,10 +1,10 @@
-import { HeaderLogo, Banner } from '../../components'
+import { Banner, HeaderMenuAlpha } from '../../components'
 import { GridProducts } from './GridProducts'
 
 export const Home = () => {
 	return (
 		<>
-			<HeaderLogo />
+			<HeaderMenuAlpha />
 			<Banner />
 			<GridProducts />
 		</>

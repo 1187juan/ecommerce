@@ -5,16 +5,16 @@ export const semanticTokens = {
 			_dark: 'hsl(0 0% 12%)',
 		},
 		onPrimaryDisabled: {
-			default: 'hsl(0 0% 100% / 0.38)',
-			_dark: 'hsl(0 0% 0% / 0.38)',
+			default: 'hsla(0 0% 100% / 0.38)',
+			_dark: 'hsla(0 0% 100% / 0.38)',
 		},
 		onPrimaryHigh: {
-			default: 'hsl(0 0% 100% /1.0)',
-			_dark: 'hsl(0 0% 0% / 1.0)',
+			default: 'hsla(0 0% 100% /1.0)',
+			_dark: 'hsla(0 0% 100% / 1.0)',
 		},
 		onPrimaryMedium: {
-			default: 'hsl(0 0% 100% / 0.74)',
-			_dark: 'hsl(0 0% 0% / 0.74)',
+			default: 'hsla(0 0% 100% / 0.74)',
+			_dark: 'hsla(0 0% 100% / 0.74)',
 		},
 		onSurfaceDisabled: {
 			default: 'hsl(0 0% 62%)',

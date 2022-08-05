@@ -1,8 +1,8 @@
-import { Box, Heading } from '@chakra-ui/react'
+import { Heading } from '@chakra-ui/react'
 import { ScrollingCarousel } from '@trendyol-js/react-carousel'
 import styled from '@emotion/styled'
 import products from '../../../data/products.json'
-import { ProductCard } from '../../../components'
+import { Container, ProductCard } from '../../../components'
 import { ButtonDirection } from './ButtonDirection'
 
 const CarouselCustom = styled(ScrollingCarousel)({
@@ -20,10 +20,11 @@ export const CarouselSimilarProducts = ({ productId }) => {
 		.slice(0, 10)
 
 	return (
-		<Box
+		<Container
+			fullWidth
 			sx={{
-				width: 'min(100%, 992px)',
-				margin: '0 auto 1rem',
+				marginTop: 0,
+				marginBottom: '1rem',
 				padding: '1rem 1rem 0',
 				backgroundColor: 'surface',
 			}}
@@ -43,6 +44,6 @@ export const CarouselSimilarProducts = ({ productId }) => {
 					/>
 				))}
 			</CarouselCustom>
-		</Box>
+		</Container>
 	)
 }

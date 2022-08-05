@@ -1,5 +1,6 @@
-import { Box, Flex } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
+import { Container } from './Container'
 import { Logo } from './Logo'
 
 export const HeaderLogo = () => {
@@ -14,19 +15,18 @@ export const HeaderLogo = () => {
 				backgroundColor: 'surface',
 			}}
 		>
-			<Flex
+			<Container
 				as='nav'
 				sx={{
+					display: 'flex',
 					alignItems: 'center',
 					height: '100%',
-					width: 'min(100% - 2rem, 992px)',
-					margin: '0 auto',
 				}}
 			>
 				<Link to='/'>
 					<Logo />
 				</Link>
-			</Flex>
+			</Container>
 		</Box>
 	)
 }

@@ -1,24 +1,44 @@
-import { Box, Flex, Grid, Heading, Image, Text } from '@chakra-ui/react'
+import {
+	Box,
+	Grid,
+	Heading,
+	Image,
+	Text,
+	useColorModeValue,
+} from '@chakra-ui/react'
 import model from '../../assets/banner/model.webp'
 import { Graphic } from './Graphic'
+import { Container } from '../Container'
 
 export const Banner = () => {
+	const background = useColorModeValue(
+		`hsl(192 100% 50%) radial-gradient(circle at bottom right,
+			hsl(186 100% 64%) 10%,
+			hsl(192 100% 50%) 45%,
+			hsl(196 100% 42%) 75%)`,
+		`hsl(192 100% 50%) radial-gradient(circle at bottom right,
+			hsl(192 100% 48%) 10%,
+			hsl(192 100% 24%) 45%,
+			hsl(196 100% 12%) 75%)`
+	)
+	const color = useColorModeValue('primary.900', 'primary.400')
+
 	return (
 		<Box
 			sx={{
 				mb: '1rem',
-				pt: '2rem',
+				pt: '6rem',
 				textAlign: ['center', 'left'],
 				color: 'white',
-				bg: '#00EAFF radial-gradient(100% 1820.44% at 0% 0%, #3C8CE7 0%, #00EAFF 100%)',
+				background,
+				overflow: 'hidden',
 			}}
 		>
-			<Flex
+			<Container
 				as='section'
 				sx={{
-					width: 'min(100% - 2rem, 992px)',
+					display: 'flex',
 					flexWrap: 'wrap',
-					margin: '0 auto',
 				}}
 			>
 				<Box
@@ -40,7 +60,7 @@ export const Banner = () => {
 						<Box
 							as='span'
 							sx={{
-								color: 'primary.900',
+								color,
 							}}
 						>
 							product
@@ -71,7 +91,7 @@ export const Banner = () => {
 						}}
 					/>
 				</Grid>
-			</Flex>
+			</Container>
 		</Box>
 	)
 }

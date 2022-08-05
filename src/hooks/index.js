@@ -1,0 +1,1 @@
+export { useVerticalStickyPlus } from './useVerticalStickyPlus'
