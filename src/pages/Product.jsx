@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 import {
 	CarouselSimilarProducts,
 	Footer,
-	HeaderLogo,
+	HeaderMenu,
 	ProductDetails,
 } from '../layouts'
 
@@ -11,7 +11,7 @@ export const Product = () => {
 
 	return (
 		<>
-			<HeaderLogo />
+			<HeaderMenu />
 			<ProductDetails productId={productId} />
 			<CarouselSimilarProducts productId={productId} />
 			<Footer />

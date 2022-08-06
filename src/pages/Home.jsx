@@ -1,9 +1,9 @@
-import { Banner, HeaderMenuAlpha, GridProducts } from '../layouts'
+import { Banner, HeaderMenu, GridProducts } from '../layouts'
 
 export const Home = () => {
 	return (
 		<>
-			<HeaderMenuAlpha />
+			<HeaderMenu alpha sx={{ position: 'fixed' }} />
 			<Banner />
 			<GridProducts />
 		</>
