@@ -10,7 +10,7 @@ export const ButtonDirection = ({
 	return (
 		<IconButton
 			icon={
-				(direction === 'right' && <ChevronRightIcon />) ??
+				(direction === 'right' && <ChevronRightIcon />) ||
 				(direction === 'left' && <ChevronLeftIcon />)
 			}
 			colorScheme={colorScheme}
