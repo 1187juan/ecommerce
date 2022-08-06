@@ -1,5 +1,5 @@
-import products from '../../data/products.json'
-import { Container, ProductCard } from '../../components'
+import products from '../data/products.json'
+import { Container, ProductCard } from '../components'
 
 export const GridProducts = () => {
 	return (

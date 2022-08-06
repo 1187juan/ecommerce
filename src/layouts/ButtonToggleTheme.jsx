@@ -1,5 +1,5 @@
 import { useColorMode } from '@chakra-ui/react'
-import { ButtonNav } from './ButtonNav'
+import { ButtonNav } from '../components'
 
 export const ButtonToggleTheme = ({ colorScheme }) => {
 	const { colorMode, toggleColorMode } = useColorMode()

@@ -1,17 +1,17 @@
 import { Box } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import { Container } from './Container'
-import { Logo } from './Logo'
+import { Container, Logo } from '../components'
 
-export const HeaderLogo = () => {
+export const HeaderLogo = ({ position = 'sticky' }) => {
 	return (
 		<Box
 			as='header'
 			sx={{
-				position: 'sticky',
+				position,
 				top: 0,
 				zIndex: 2,
-				height: '3.5rem',
+				height: '4rem',
+				width: '100%',
 				backgroundColor: 'surface',
 			}}
 		>

@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react'
 import model from '../../assets/banner/model.webp'
 import { Graphic } from './Graphic'
-import { Container } from '../Container'
+import { Container } from '../../components'
 
 export const Banner = () => {
 	const background = useColorModeValue(

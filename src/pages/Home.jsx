@@ -1,5 +1,4 @@
-import { Banner, HeaderMenuAlpha } from '../../components'
-import { GridProducts } from './GridProducts'
+import { Banner, HeaderMenuAlpha, GridProducts } from '../layouts'
 
 export const Home = () => {
 	return (

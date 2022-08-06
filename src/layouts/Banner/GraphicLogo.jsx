@@ -1,5 +1,5 @@
 import { Flex, Image } from '@chakra-ui/react'
-import { LogoIcon } from '../svgs/LogoIcon'
+import { LogoIcon } from '../../components'
 import energyBall from '../../assets/banner/energy-ball.webp'
 
 export const GraphicLogo = () => {

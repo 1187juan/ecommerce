@@ -1,8 +1,7 @@
-import { Container, Logo } from './'
+import { Container, Logo, ButtonNav } from '../components'
 import { Box, Flex } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { ButtonToggleTheme } from './ButtonToggleTheme'
-import { ButtonNav } from './ButtonNav'
 import { useVerticalStickyPlus } from '../hooks'
 
 export const HeaderMenuAlpha = () => {
@@ -10,7 +9,6 @@ export const HeaderMenuAlpha = () => {
 		matchInitialPosition: true,
 	})
 	const colorScheme = isMatchInitialPosition ? 'whiteAlpha' : 'gray'
-	console.log('first')
 
 	return (
 		<Box

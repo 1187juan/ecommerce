@@ -1,8 +1,8 @@
 import { Box, Grid, Heading, Text } from '@chakra-ui/react'
-import error404Svg from '../../assets/undraw/undraw_page_not_found_re_e9o6.svg'
-import { Container } from '../../components'
+import { Container } from '../components'
+import error404Svg from '../assets/undraw/undraw_page_not_found_re_e9o6.svg'
 
-export const Content = () => {
+export const Error404FullScreen = () => {
 	return (
 		<Container
 			as='section'
@@ -12,7 +12,7 @@ export const Content = () => {
 				justifyItems: 'center',
 				alignContent: 'center',
 				gap: '1rem',
-				minHeight: 'calc(100vh - 3.5rem)',
+				minHeight: '100vh',
 			}}
 		>
 			<Box
