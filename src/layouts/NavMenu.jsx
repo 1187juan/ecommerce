@@ -1,6 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { ButtonNav, Container, Logo } from '../components'
+import { ButtonBasket } from './ButtonBasket'
 import { ButtonToggleTheme } from './ButtonToggleTheme'
 
 export const NavMenu = ({ colorScheme = 'gray' }) => {
@@ -35,11 +36,7 @@ export const NavMenu = ({ colorScheme = 'gray' }) => {
 					<ButtonToggleTheme colorScheme={colorScheme} />
 				</Box>
 				<Box as='li'>
-					<ButtonNav
-						colorScheme={colorScheme}
-						label='Carrito'
-						icon={<div style={{ fontSize: '1.5rem', lineHeight: 1 }}>🛒</div>}
-					/>
+					<ButtonBasket colorScheme={colorScheme} />
 				</Box>
 			</Flex>
 		</Container>

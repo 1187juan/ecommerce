@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Error404, Home, Product, Tests } from '../pages'
+import { Checkout, Error404, Home, Product, Tests } from '../pages'
 import { GeneralRoutes } from './GeneralRoutes'
 import { PrivateRoutes } from './PrivateRoutes'
 import { PublicRoutes } from './PublicRoutes'
@@ -19,6 +19,7 @@ export const AppRouter = () => {
 				</Route>
 				<Route element={<PrivateRoutes />}>
 					<Route path='/account' element={<div>account</div>} />
+					<Route path='/checkout' element={<Checkout />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

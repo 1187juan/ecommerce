@@ -19,7 +19,7 @@ export const CarouselImage = ({ badge, imageUrl, description = '' }) => {
 			>
 				{badge}
 			</Badge>
-			<Image src={imageUrl} alt={description} />
+			<Image src={imageUrl} alt={description} boxSize='100%' />
 		</Box>
 	)
 }

@@ -6,7 +6,7 @@ export const HeaderMenu = ({ alpha = false, sx = {} }) => {
 	const [headerRef, { isMatchInitialPosition }] = useVerticalStickyPlus({
 		matchInitialPosition: alpha,
 	})
-	const colorScheme = isMatchInitialPosition ? 'whiteAlpha' : 'gray'
+	const colorScheme = alpha && isMatchInitialPosition ? 'whiteAlpha' : 'gray'
 
 	return (
 		<Box
