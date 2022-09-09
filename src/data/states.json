@@ -1,0 +1,162 @@
+[
+	{
+		"id": 1,
+		"name": "Aguascalientes",
+		"postalCodesRange": [20000, 20997]
+	},
+	{
+		"id": 2,
+		"name": "Baja California",
+		"postalCodesRange": [21000, 22997]
+	},
+	{
+		"id": 3,
+		"name": "Baja California Sur",
+		"postalCodesRange": [23000, 23997]
+	},
+	{
+		"id": 4,
+		"name": "Campeche",
+		"postalCodesRange": [24000, 24940]
+	},
+	{
+		"id": 5,
+		"name": "Coahuila",
+		"postalCodesRange": [25000, 27997]
+	},
+	{
+		"id": 6,
+		"name": "Colima",
+		"postalCodesRange": [28000, 28989]
+	},
+	{
+		"id": 7,
+		"name": "Chiapas",
+		"postalCodesRange": [29000, 30997]
+	},
+	{
+		"id": 8,
+		"name": "Chihuahua",
+		"postalCodesRange": [31000, 33997]
+	},
+	{
+		"id": 9,
+		"name": "Ciudad de México",
+		"postalCodesRange": [1000, 16900]
+	},
+	{
+		"id": 10,
+		"name": "Durango",
+		"postalCodesRange": [34000, 35987]
+	},
+	{
+		"id": 11,
+		"name": "Guanajuato",
+		"postalCodesRange": [36000, 38997]
+	},
+	{
+		"id": 12,
+		"name": "Guerrero",
+		"postalCodesRange": [39000, 41998]
+	},
+	{
+		"id": 13,
+		"name": "Hidalgo",
+		"postalCodesRange": [42000, 43998]
+	},
+	{
+		"id": 14,
+		"name": "Jalisco",
+		"postalCodesRange": [44100, 49996]
+	},
+	{
+		"id": 15,
+		"name": "México",
+		"postalCodesRange": [50000, 57950]
+	},
+	{
+		"id": 16,
+		"name": "Michoacán",
+		"postalCodesRange": [58000, 61998]
+	},
+	{
+		"id": 17,
+		"name": "Morelos",
+		"postalCodesRange": [62000, 62996]
+	},
+	{
+		"id": 18,
+		"name": "Nayarit",
+		"postalCodesRange": [63000, 63996]
+	},
+	{
+		"id": 19,
+		"name": "Nuevo León",
+		"postalCodesRange": [64000, 67996]
+	},
+	{
+		"id": 20,
+		"name": "Oaxaca",
+		"postalCodesRange": [68000, 71998]
+	},
+	{
+		"id": 21,
+		"name": "Puebla",
+		"postalCodesRange": [72000, 75997]
+	},
+	{
+		"id": 22,
+		"name": "Querétaro",
+		"postalCodesRange": [76000, 76998]
+	},
+	{
+		"id": 23,
+		"name": "Quintana Roo",
+		"postalCodesRange": [77000, 77997]
+	},
+	{
+		"id": 24,
+		"name": "San Luis Potosí",
+		"postalCodesRange": [78000, 79998]
+	},
+	{
+		"id": 25,
+		"name": "Sinaloa",
+		"postalCodesRange": [80000, 82996]
+	},
+	{
+		"id": 26,
+		"name": "Sonora",
+		"postalCodesRange": [83000, 85994]
+	},
+	{
+		"id": 27,
+		"name": "Tabasco",
+		"postalCodesRange": [86000, 86998]
+	},
+	{
+		"id": 28,
+		"name": "Tamaulipas",
+		"postalCodesRange": [87000, 89970]
+	},
+	{
+		"id": 29,
+		"name": "Tlaxcala",
+		"postalCodesRange": [90000, 90990]
+	},
+	{
+		"id": 30,
+		"name": "Veracruz",
+		"postalCodesRange": [91000, 96998]
+	},
+	{
+		"id": 31,
+		"name": "Yucatán",
+		"postalCodesRange": [97000, 97990]
+	},
+	{
+		"id": 32,
+		"name": "Zacatecas",
+		"postalCodesRange": [98000, 99998]
+	}
+]

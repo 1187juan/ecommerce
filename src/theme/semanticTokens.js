@@ -1,7 +1,7 @@
 export const semanticTokens = {
 	colors: {
 		background: {
-			default: 'hsl(0 0% 96%)',
+			default: 'hsl(0 0% 98%)',
 			_dark: 'hsl(0 0% 12%)',
 		},
 		onPrimaryDisabled: {

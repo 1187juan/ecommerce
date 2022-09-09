@@ -1,5 +1,5 @@
 import { Carousel as CarouselBase } from '@trendyol-js/react-carousel'
-import { ButtonDirection } from '../../components'
+import { ButtonArrow } from '../../components'
 import styled from '@emotion/styled'
 
 const CarouselCustom = styled(CarouselBase)({
@@ -16,7 +16,7 @@ export const Carousel = ({ children }) => {
 			swiping
 			infinite
 			leftArrow={
-				<ButtonDirection
+				<ButtonArrow
 					direction='left'
 					variant='ghost'
 					sx={{
@@ -30,7 +30,7 @@ export const Carousel = ({ children }) => {
 				/>
 			}
 			rightArrow={
-				<ButtonDirection
+				<ButtonArrow
 					direction='right'
 					variant='ghost'
 					sx={{

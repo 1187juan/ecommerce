@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, useColorModeValue } from '@chakra-ui/react'
 
 export const GraphicProducts = ({
 	children,
@@ -6,6 +6,20 @@ export const GraphicProducts = ({
 	sizeBall = '85%',
 	rotationDirection = '',
 }) => {
+	const backgroundImage = useColorModeValue(
+		`
+		radial-gradient(
+			circle, 
+			transparent 0%, 
+			hsla(192 100% 90% / .30) 100%
+		)`,
+		`radial-gradient(
+			circle, 
+			transparent 0%, 
+			hsla(192 100% 90% / .10) 100%
+			)`
+	)
+
 	return (
 		<Flex
 			as='ul'
@@ -20,13 +34,9 @@ export const GraphicProducts = ({
 					position: 'relative',
 					display: 'block',
 					height: sizeBall,
-					background:
-						'radial-gradient(50% 50% at 50% 50%, #000000 0%, #C6FAFF 100%)',
-
+					backgroundImage,
 					borderRadius: '50%',
 					aspectRatio: '1 / 1',
-					mixBlendMode: 'screen',
-					opacity: 0.15,
 				},
 				animation: `turn1 32s infinite linear ${rotationDirection}`,
 				'@keyframes turn1': {

@@ -1,4 +1,5 @@
 import { useColorMode } from '@chakra-ui/react'
+import { MoonIcon, SunIcon } from '../boxicons'
 import { ButtonNav } from '../components'
 
 export const ButtonToggleTheme = ({ colorScheme }) => {
@@ -8,13 +9,7 @@ export const ButtonToggleTheme = ({ colorScheme }) => {
 			colorScheme={colorScheme}
 			onClick={toggleColorMode}
 			label='Tema'
-			icon={
-				colorMode === 'light' ? (
-					<div style={{ fontSize: '1.5rem', lineHeight: 1 }}>🧥</div>
-				) : (
-					<div style={{ fontSize: '1.5rem', lineHeight: 1 }}>🥼</div>
-				)
-			}
+			icon={colorMode === 'light' ? <SunIcon /> : <MoonIcon />}
 		/>
 	)
 }

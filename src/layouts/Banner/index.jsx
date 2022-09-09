@@ -55,7 +55,7 @@ export const Banner = () => {
 							marginBottom: '1rem',
 						}}
 					>
-						Title of the
+						Hogar en
 						<br />
 						<Box
 							as='span'
@@ -63,7 +63,7 @@ export const Banner = () => {
 								color,
 							}}
 						>
-							product
+							armonía
 						</Box>
 					</Heading>
 					<Text>

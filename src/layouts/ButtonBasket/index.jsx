@@ -18,7 +18,8 @@ import basketIds from '../../data/basketIds'
 import { EmptyBasketPlaceholder } from './EmptyBasketPlaceholder'
 import { Link } from 'react-router-dom'
 import products from '../../data/products.json'
-import { asCurrency } from '../helpers'
+import { asCurrency } from '../../helpers'
+import { CartIcon } from '../../boxicons'
 
 export const ButtonBasket = ({ colorScheme }) => {
 	const { isOpen, onClose, onOpen } = useDisclosure()
@@ -40,7 +41,7 @@ export const ButtonBasket = ({ colorScheme }) => {
 				onClick={onOpen}
 				label='Carrito'
 				badge={totalProductsBasket}
-				icon={<div style={{ fontSize: '1.5rem', lineHeight: 1 }}>🛒</div>}
+				icon={<CartIcon />}
 			/>
 			<Drawer
 				isOpen={isOpen}

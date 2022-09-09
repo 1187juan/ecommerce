@@ -1,2 +1,3 @@
-export { useVerticalStickyPlus } from './useVerticalStickyPlus'
-export { useMediaQuery } from './useMediaQuery'
+export * from './useVerticalStickyPlus'
+export * from './useMediaQuery'
+export * from './usePostalCodeInfo'

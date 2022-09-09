@@ -1,5 +1,5 @@
 import { ScrollingCarousel } from '@trendyol-js/react-carousel'
-import { ButtonDirection } from '../../components'
+import { ButtonArrow } from '../../components'
 import styled from '@emotion/styled'
 
 const CarouselCustom = styled(ScrollingCarousel)({
@@ -15,7 +15,7 @@ export const Carousel = ({ children }) => {
 	return (
 		<CarouselCustom
 			leftIcon={
-				<ButtonDirection
+				<ButtonArrow
 					direction='left'
 					sx={{
 						position: 'absolute',
@@ -27,7 +27,7 @@ export const Carousel = ({ children }) => {
 				/>
 			}
 			rightIcon={
-				<ButtonDirection
+				<ButtonArrow
 					direction='right'
 					sx={{
 						position: 'absolute',

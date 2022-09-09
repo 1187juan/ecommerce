@@ -50,18 +50,18 @@ export const Graphic = () => {
 						rotationDirection='reverse'
 						rotation={(360 / 8) * i}
 						deley={(32 / 8) * -i}
-						size='15%'
+						size='20%'
 					/>
 				))}
 			</GraphicProducts>
-			<GraphicProducts size='60%' rotationDirection='reverse'>
+			<GraphicProducts size='55%' rotationDirection='reverse'>
 				{products.slice(8, 12).map((product, i) => (
 					<GraphicProduct
 						key={product}
 						src={product}
 						rotation={(360 / 4) * -i}
 						deley={(32 / 4) * -i}
-						size='15%'
+						size='18%'
 					/>
 				))}
 			</GraphicProducts>

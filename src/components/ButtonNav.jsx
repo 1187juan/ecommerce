@@ -10,7 +10,7 @@ const badgeStyles = {
 	alignItems: 'center',
 	padding: '.25rem',
 	fontSize: '.75rem',
-	backgroundColor: 'darkred',
+	backgroundColor: 'red',
 	color: 'white',
 	borderRadius: '.75rem',
 	transform: 'translate(50%, -25%)',

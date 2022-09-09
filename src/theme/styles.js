@@ -1,7 +1,8 @@
 export const styles = {
-	global: ({ colorMode }) => ({
+	global: {
 		'html, body': {
-			background: colorMode === 'light' ? 'hsl(0 0% 98%)' : 'hsl(192 16% 12%)',
+			background: 'background',
+			color: 'onSurfaceHigh',
 		},
-	}),
+	},
 }

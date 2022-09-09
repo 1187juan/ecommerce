@@ -16,8 +16,10 @@
 		"@emotion/styled": "11",
 		"@trendyol-js/react-carousel": "3.0.0",
 		"framer-motion": "6",
+		"nanoid": "4.0.0",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
+		"react-hook-form": "7.34.2",
 		"react-router-dom": "6.3.0"
 	},
 	"devDependencies": {

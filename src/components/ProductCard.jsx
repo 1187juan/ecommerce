@@ -1,10 +1,9 @@
 import { Flex, Grid, Image, Text } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import imageDelete from '../assets/banner/product-01.webp'
 
 export const ProductCard = ({ name, images, price, id, sx, ...props }) => {
 	const description = images[0].description
-	const imageUrl = imageDelete ?? images[0].url
+	const imageUrl = images[0].url
 
 	return (
 		<Grid

@@ -1,12 +1,11 @@
 import products from '../../data/products.json'
-import imageDelete from '../../assets/banner/product-01.webp'
 import { Divider, Flex, Grid, Image, Link, Text } from '@chakra-ui/react'
-import { asCurrency } from '../helpers'
+import { asCurrency } from '../../helpers'
 import { Link as LinkRRD } from 'react-router-dom'
 import { ButtonCounter } from '../../components'
 
 export const BasketItem = ({ id, quantity }) => {
-	const { name, price } = products.find(product => product.id === id)
+	const { name, price, images } = products.find(product => product.id === id)
 
 	const total = price * quantity
 	const totalCurrency = asCurrency(total)
@@ -22,9 +21,9 @@ export const BasketItem = ({ id, quantity }) => {
 				}}
 			>
 				<Image
-					src={imageDelete}
+					src={images[0].url}
 					alt={name}
-					sx={{ width: 'min(35%, 12rem)', margin: 'auto' }}
+					sx={{ width: 'min(30%, 12rem)', margin: 'auto' }}
 				/>
 				<Flex
 					sx={{

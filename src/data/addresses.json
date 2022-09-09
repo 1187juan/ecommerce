@@ -1,0 +1,33 @@
+[
+	{
+		"id": "1",
+		"cologne": "Toluca de Lerdo Centro",
+		"indications": "Casa azul con porton blanco",
+		"interiorNumber": 1,
+		"municipalityOrTownHall": "Toluca",
+		"nameAndSurname": "Carlos González",
+		"outdoorNumber": 12,
+		"phoneNumber": 5531405485,
+		"postalCode": "50000",
+		"referenceStreet1": "Libramiento",
+		"referenceStreet2": "Tollocan",
+		"state": "México",
+		"street": "Allende"
+	},
+
+	{
+		"id": "2",
+		"cologne": "La Concepción de los Baños",
+		"indications": "Casa blanca frente a la escuela",
+		"interiorNumber": null,
+		"municipalityOrTownHall": "Ixtlahuaca",
+		"nameAndSurname": "Carla Canton",
+		"outdoorNumber": null,
+		"phoneNumber": 7125487252,
+		"postalCode": "50740",
+		"referenceStreet1": "Carlos",
+		"referenceStreet2": "Caminito",
+		"state": "México",
+		"street": "Guzmán"
+	}
+]

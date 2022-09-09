@@ -1,5 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
+import { UserIcon } from '../boxicons'
 import { ButtonNav, Container, Logo } from '../components'
 import { ButtonBasket } from './ButtonBasket'
 import { ButtonToggleTheme } from './ButtonToggleTheme'
@@ -29,7 +30,7 @@ export const NavMenu = ({ colorScheme = 'gray' }) => {
 					<ButtonNav
 						colorScheme={colorScheme}
 						label='Cuenta'
-						icon={<div style={{ fontSize: '1.5rem', lineHeight: 1 }}>🦄</div>}
+						icon={<UserIcon />}
 					/>
 				</Box>
 				<Box as='li'>
