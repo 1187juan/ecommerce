@@ -1,16 +1,10 @@
-import {
-	Button,
-	Flex,
-	FormControl,
-	FormErrorMessage,
-	Grid,
-	Text,
-	useDisclosure,
-} from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useDisclosure } from '@chakra-ui/react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { RadioCard } from '../../components'
+import { searchItemById } from '../../helpers'
 import { ModalAddressForm } from '../../layouts'
+import { CardNewAddress } from './CardNewAddress'
+import { FormAddresses } from './FormAddresses'
 
 export const FormAddressSelection = ({
 	addresses = [],
@@ -18,14 +12,10 @@ export const FormAddressSelection = ({
 	sx = {},
 	...props
 }) => {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm()
+	const { register, handleSubmit, formState } = useForm()
 
 	const onSubmit = ({ addressId }) => {
-		const address = addresses.find(({ id }) => id === addressId)
+		const address = searchItemById(addressId, addresses)
 		onSuccess(address)
 	}
 
@@ -33,80 +23,31 @@ export const FormAddressSelection = ({
 	const [addressToEdit, setAddressToEdit] = useState(null)
 	const resetAddressToEdit = () => setAddressToEdit(null)
 
-	const onEdit = addressId =>
-		setAddressToEdit(addresses?.find(({ id }) => id === addressId) ?? null)
+	const onEditAddress = addressId => {
+		setAddressToEdit(searchItemById(addressId, addresses))
+		onOpen()
+	}
 
-	useEffect(() => {
-		addressToEdit && onOpen()
-	}, [addressToEdit])
-
-	console.log('ok')
+	const hasAddresses = !!addresses.length
 
 	return (
 		<>
-			<Grid
-				as='form'
-				sx={{ gap: '1rem', ...sx }}
-				onSubmit={handleSubmit(onSubmit)}
-				{...props}
-			>
-				<Text fontSize='xl' fontWeight='semibold'>
-					Elige una dirección de envío
-				</Text>
-				<FormControl
-					sx={{ display: 'grid', gap: '1rem' }}
-					isInvalid={errors.addressId}
-				>
-					{addresses.map(
-						({
-							postalCode,
-							id,
-							street,
-							nameAndSurname,
-							phoneNumber,
-							outdoorNumber,
-						}) => (
-							<RadioCard
-								key={id}
-								{...register('addressId', {
-									required: 'El campo es requerido',
-								})}
-								value={id}
-							>
-								<Grid sx={{ gap: '.5rem' }}>
-									<Text>C.P. {postalCode}</Text>
-									<Text
-										sx={{ color: 'onSurfaceMedium' }}
-										fontWeight='medium'
-										fontSize='.875rem'
-									>
-										{street} {outdoorNumber ?? 'SN'}
-										<br />
-										{nameAndSurname} - {phoneNumber}
-									</Text>
-									<Button
-										variant='link'
-										sx={{ width: 'max-content' }}
-										onClick={() => onEdit(id)}
-									>
-										Editar
-									</Button>
-								</Grid>
-							</RadioCard>
-						)
-					)}
+			{hasAddresses && (
+				<FormAddresses
+					addresses={addresses}
+					handleSubmit={handleSubmit}
+					onSubmit={onSubmit}
+					onEditAddress={onEditAddress}
+					register={register}
+					formState={formState}
+					onOpen={onOpen}
+					sx={sx}
+					props={props}
+				/>
+			)}
 
-					<FormErrorMessage>{errors.addressId?.message}</FormErrorMessage>
-				</FormControl>
-				<Flex sx={{ gap: '1rem', flexDirection: ['column', 'row'] }}>
-					<Button size='lg' colorScheme='gray' type='button' onClick={onOpen}>
-						Nueva dirección
-					</Button>
-					<Button size='lg' type='submit'>
-						Continuar
-					</Button>
-				</Flex>
-			</Grid>
+			{!hasAddresses && <CardNewAddress onOpen={onOpen} />}
+
 			{(addressToEdit ?? isOpen) && (
 				<ModalAddressForm
 					onClose={onClose}

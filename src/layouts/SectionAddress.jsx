@@ -19,11 +19,9 @@ export const SectionAddress = () => {
 			}}
 		>
 			<Heading sx={{ marginBottom: '1rem' }}>Dirección</Heading>
-
 			{addressId && (
 				<AddressCard {...address} onChange={() => setAddressId(null)} />
 			)}
-
 			{!addressId && (
 				<FormAddressSelection addresses={addresses} onSuccess={onSuccess} />
 			)}
