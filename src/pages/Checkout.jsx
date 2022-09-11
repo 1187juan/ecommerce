@@ -1,4 +1,4 @@
-import { Box, Center, Grid, Heading } from '@chakra-ui/react'
+import { Box, Grid, Text } from '@chakra-ui/react'
 import { Container } from '../components'
 import {
 	BasketGrid,
@@ -6,6 +6,7 @@ import {
 	Footer,
 	HeaderBack,
 	SectionAddress,
+	SectionPayment,
 } from '../layouts'
 
 export const Checkout = () => {
@@ -21,8 +22,7 @@ export const Checkout = () => {
 			>
 				<Grid sx={{ flex: '3 0 min(100%, 30rem)', gap: '1rem' }}>
 					<SectionAddress />
-
-					<Center sx={{ height: '40vmin', bg: 'surface' }}>Pago</Center>
+					<SectionPayment />
 					<Box
 						as='section'
 						sx={{
@@ -31,7 +31,13 @@ export const Checkout = () => {
 							borderRadius: '.25rem',
 						}}
 					>
-						<Heading sx={{ marginBottom: '1rem' }}>Productos</Heading>
+						<Text
+							fontSize='2xl'
+							fontWeight='semibold'
+							sx={{ marginBottom: '1rem' }}
+						>
+							Productos
+						</Text>
 						<BasketGrid />
 					</Box>
 				</Grid>

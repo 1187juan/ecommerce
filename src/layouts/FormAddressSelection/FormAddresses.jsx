@@ -49,7 +49,7 @@ export const FormAddresses = ({
 					Nueva dirección
 				</Button>
 				<Button size='lg' type='submit'>
-					Continuar
+					Confirmar dirección
 				</Button>
 			</Flex>
 		</Grid>

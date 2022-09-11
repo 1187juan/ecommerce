@@ -1,4 +1,4 @@
-import { Heading } from '@chakra-ui/react'
+import { Text } from '@chakra-ui/react'
 import products from '../../data/products.json'
 import { Container, ProductCard } from '../../components'
 import { Carousel } from './Carousel'
@@ -18,7 +18,9 @@ export const CarouselSimilarProducts = ({ productId }) => {
 				backgroundColor: 'surface',
 			}}
 		>
-			<Heading>Más productos</Heading>
+			<Text fontSize='2xl' fontWeight='semibold'>
+				Más productos
+			</Text>
 			<Carousel>
 				{similarProducts.map((similarProduct, index) => (
 					<ProductCard

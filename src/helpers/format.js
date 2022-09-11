@@ -1,15 +1,11 @@
-export const formatCardNumber = value => {
-	return value
-		.replace(/\s/g, '')
-		.replace(/\D/g, '')
-		.slice(0, 16)
-		.replace(/([0-9]{4})/g, '$1 ')
-		.trim()
-}
+const transformNumberToString = value =>
+	typeof value === 'number' ? value.toString() : value
+
+const repeatString = (cuantity, value = '•') =>
+	Array(cuantity).fill(value).join('')
 
 export const formatPhoneNumber = value => {
-	typeof value === 'number' && (value = value.toString())
-
+	value = transformNumberToString(value)
 	const numbers = value?.match(/\d+/g)?.join('').slice(0, 10) ?? ''
 
 	if (numbers.length === 10)
@@ -19,9 +15,8 @@ export const formatPhoneNumber = value => {
 }
 
 export const formatPostalCode = (value = '') => {
-	typeof value === 'number' && (value = value.toString())
+	value = transformNumberToString(value)
 	const prefixes = ['00000', '0000', '000', '00', '0', '']
-
 	const stringsOfNumbers = value?.match(/\d+/)?.[0].slice(0, 5) ?? ''
 	const prefixNumber = prefixes[stringsOfNumbers.length]
 
@@ -29,7 +24,41 @@ export const formatPostalCode = (value = '') => {
 }
 
 export const formatNumber = value => {
-	typeof value === 'number' && (value = value.toString())
+	value = transformNumberToString(value)
 
 	return value?.match(/\d+/g)?.join('') ?? ''
+}
+
+export const formatCardNumber = (value, { autocomplete = false } = {}) => {
+	value = transformNumberToString(value)
+	let numbers = value?.match(/\d+/g)?.join('').slice(0, 16) ?? ''
+
+	if (autocomplete) {
+		const missingNumbers = 16 - numbers.length
+		numbers += repeatString(missingNumbers)
+	}
+
+	return numbers.replace(/([\d•]{4})/g, '$1 ').trim()
+}
+
+export const formatCardExpiredDate = (value, { autocomplete = false } = {}) => {
+	value = transformNumberToString(value)
+	let numbers = value?.match(/\d+/g)?.join('').slice(0, 4) ?? ''
+	if (autocomplete) {
+		const missingNumbers = 4 - numbers.length
+		numbers += repeatString(missingNumbers)
+	}
+
+	return numbers.replace(/([\d•]{2})/g, '$1/').slice(0, 5)
+}
+export const formatCCV = (value, { autocomplete = false } = {}) => {
+	value = transformNumberToString(value)
+	let numbers = value?.match(/\d+/g)?.join('').slice(0, 3) ?? ''
+
+	if (autocomplete) {
+		const missingNumbers = 3 - numbers.length
+		numbers += repeatString(missingNumbers)
+	}
+
+	return numbers
 }

@@ -1,4 +1,4 @@
-import { Box, Heading } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 import addresses from '../data/addresses.json'
 import { AddressCard } from './AddressCard'
@@ -18,7 +18,9 @@ export const SectionAddress = () => {
 				borderRadius: '.25rem',
 			}}
 		>
-			<Heading sx={{ marginBottom: '1rem' }}>Dirección</Heading>
+			<Text fontSize='2xl' fontWeight='semibold' sx={{ marginBottom: '1rem' }}>
+				Dirección
+			</Text>
 			{addressId && (
 				<AddressCard {...address} onChange={() => setAddressId(null)} />
 			)}

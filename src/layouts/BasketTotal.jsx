@@ -8,7 +8,6 @@ import {
 	Button,
 	Divider,
 	Grid,
-	Heading,
 	Text,
 } from '@chakra-ui/react'
 import basketIds from '../data/basketIds'
@@ -41,7 +40,9 @@ export const BasketTotal = ({ position = 'sticky' } = {}) => {
 				borderRadius: '.25rem',
 			}}
 		>
-			<Heading>Total</Heading>
+			<Text fontSize='2xl' fontWeight='semibold'>
+				Total
+			</Text>
 			<Text>
 				Subtotal
 				<Box as='strong' sx={{ float: 'right' }}>

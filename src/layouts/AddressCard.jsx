@@ -1,4 +1,4 @@
-import { Button, Grid, Heading, Text } from '@chakra-ui/react'
+import { Button, Grid, Text } from '@chakra-ui/react'
 import { MapIcon } from '../boxicons'
 
 export const AddressCard = ({
@@ -24,7 +24,9 @@ export const AddressCard = ({
 		>
 			<MapIcon />
 			<Grid sx={{ gap: '1rem' }}>
-				<Heading size='md'>{street}</Heading>
+				<Text size='md' fontSize='xl' fontWeight='semibold'>
+					{street}
+				</Text>
 				<Text>
 					{municipalityOrTownHall} - {street} {outdoorNumber} / {interiorNumber}{' '}
 					<br />

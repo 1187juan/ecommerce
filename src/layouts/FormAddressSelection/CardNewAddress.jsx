@@ -7,11 +7,10 @@ export const CardNewAddress = ({ onOpen }) => {
 				gap: '1rem',
 				justifyContent: 'space-between',
 				flexDirection: ['column', 'row'],
+				alignItems: ['stretch', 'center'],
 			}}
 		>
-			<Text fontSize='2xl' fontWeight='semibold'>
-				Crea una dirección de envío
-			</Text>
+			<Text>Crea una dirección de envío</Text>
 			<Button size='lg' onClick={onOpen}>
 				Nueva dirección
 			</Button>
