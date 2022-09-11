@@ -1,17 +1,5 @@
-import {
-	Box,
-	Button,
-	Flex,
-	Modal,
-	ModalBody,
-	ModalCloseButton,
-	ModalContent,
-	ModalFooter,
-	ModalHeader,
-	ModalOverlay,
-	Text,
-	useDisclosure,
-} from '@chakra-ui/react'
+import { Box, Button, Flex, Text, useDisclosure } from '@chakra-ui/react'
+import { ModalPaymentForm } from '../ModalPaymentForm'
 
 export const SectionPayment = () => {
 	const { isOpen, onClose, onOpen } = useDisclosure({ defaultIsOpen: true })
@@ -42,22 +30,11 @@ export const SectionPayment = () => {
 					</Button>
 				</Flex>
 			</Box>
-			<Modal isOpen={isOpen} onClose={onClose}>
-				<ModalOverlay />
-				<ModalContent>
-					<ModalHeader>Tarjeta</ModalHeader>
-					<ModalCloseButton />
-					<ModalBody>
-						Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae
-						libero, saepe in dolores, dolorum inventore, repudiandae magni vel
-						reprehenderit a beatae. Dolores quia commodi corrupti neque ad
-						voluptas excepturi eum.
-					</ModalBody>
-					<ModalFooter>
-						<Button>Continuar</Button>
-					</ModalFooter>
-				</ModalContent>
-			</Modal>
+			<ModalPaymentForm
+				onClose={onClose}
+				isOpen={isOpen}
+				onCloseComplete={() => console.log('closed form')}
+			/>
 		</>
 	)
 }
