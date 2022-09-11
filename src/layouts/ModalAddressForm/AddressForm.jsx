@@ -54,6 +54,7 @@ export const AddressForm = ({
 						setValueAs: value => value?.trim().slice(0, 100) || null,
 					})}
 					maxLength={100}
+					autoComplete='off'
 				/>
 				{!errors.nameAndSurname && (
 					<FormHelperText>Tal cual figura en el INE o IFE.</FormHelperText>
@@ -90,6 +91,8 @@ export const AddressForm = ({
 								validatePostalCode(value) || 'No es un código postal válido.',
 						})}
 						maxLength={5}
+						autoComplete='off'
+						type='number'
 					/>
 
 					<InputRightElement
@@ -172,6 +175,7 @@ export const AddressForm = ({
 						setValueAs: value => value?.trim().slice(0, 100) || null,
 					})}
 					maxLength={100}
+					autoComplete='off'
 				/>
 				<FormErrorMessage>{errors.street?.message}</FormErrorMessage>
 			</FormControl>
@@ -201,6 +205,7 @@ export const AddressForm = ({
 						})}
 						min={1}
 						sx={{ paddingRight: '9rem' }}
+						autoComplete='off'
 					/>
 					<InputRightElement
 						sx={{
@@ -238,6 +243,7 @@ export const AddressForm = ({
 						setValueAs: transformToNumber,
 					})}
 					min={1}
+					autoComplete='off'
 				/>
 				<FormErrorMessage>{errors.interiorNumber?.message}</FormErrorMessage>
 			</FormControl>
@@ -254,6 +260,7 @@ export const AddressForm = ({
 						},
 						setValueAs: value => value?.trim() || null,
 					})}
+					autoComplete='off'
 				/>
 				<FormErrorMessage>{errors.referenceStreet1?.message}</FormErrorMessage>
 			</FormControl>
@@ -269,6 +276,7 @@ export const AddressForm = ({
 						},
 						setValueAs: value => value?.trim() || null,
 					})}
+					autoComplete='off'
 				/>
 				<FormErrorMessage>{errors.referenceStreet2?.message}</FormErrorMessage>
 			</FormControl>
@@ -303,6 +311,8 @@ export const AddressForm = ({
 									)
 								}
 								value={formatPhoneNumber(field.value)}
+								autoComplete='off'
+								type='tel'
 							/>
 						</InputGroup>
 						{!error && (
@@ -332,6 +342,7 @@ export const AddressForm = ({
 					placeholder='Descripción de la fachada, puntos de referencia para encontrarla, indicaciones de seguridad, etc.'
 					maxLength={128}
 					sx={{ minHeight: '8rem' }}
+					autoComplete='off'
 				/>
 				<FormHelperText sx={{ float: 'right' }}>
 					{watch('indications')?.length ?? 0}/128

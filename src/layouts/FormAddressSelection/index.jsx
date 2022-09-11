@@ -19,7 +19,7 @@ export const FormAddressSelection = ({
 		onSuccess(address)
 	}
 
-	const { isOpen, onClose, onOpen } = useDisclosure()
+	const { isOpen, onClose, onOpen } = useDisclosure({ defaultIsOpen: true })
 	const [addressToEdit, setAddressToEdit] = useState(null)
 	const resetAddressToEdit = () => setAddressToEdit(null)
 
