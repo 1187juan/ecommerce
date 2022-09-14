@@ -1,3 +1,4 @@
 export * from './useVerticalStickyPlus'
 export * from './useMediaQuery'
-export * from './usePostalCodeInfo'
+export * from './usePostalCodeData'
+export * from './useDebounced'

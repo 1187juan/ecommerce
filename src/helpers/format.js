@@ -1,8 +1,7 @@
+import { repeatString } from './repeatString'
+
 const transformNumberToString = value =>
 	typeof value === 'number' ? value.toString() : value
-
-const repeatString = (cuantity, value = '•') =>
-	Array(cuantity).fill(value).join('')
 
 export const formatPhoneNumber = value => {
 	value = transformNumberToString(value)
@@ -14,19 +13,25 @@ export const formatPhoneNumber = value => {
 	return numbers.replace(/(\d{3})/g, '$1 ').trim()
 }
 
-export const formatPostalCode = (value = '') => {
+export const formatPostalCode = (value, { autocomplete = false } = {}) => {
 	value = transformNumberToString(value)
-	const prefixes = ['00000', '0000', '000', '00', '0', '']
-	const stringsOfNumbers = value?.match(/\d+/)?.[0].slice(0, 5) ?? ''
-	const prefixNumber = prefixes[stringsOfNumbers.length]
-
-	return prefixNumber + stringsOfNumbers
+	let numbers = value?.match(/\d+/g)?.join('')?.slice(0, 5) ?? ''
+	if (autocomplete) {
+		const cuantity = 5 - numbers.length
+		numbers = repeatString(cuantity, '0') + numbers
+	}
+	return numbers
 }
 
-export const formatNumber = value => {
+export const formatNumber = (value, { maxLength = null } = {}) => {
 	value = transformNumberToString(value)
 
-	return value?.match(/\d+/g)?.join('') ?? ''
+	let numbers = value?.match(/\d+/g)?.join('') ?? ''
+	if (maxLength) {
+		numbers = numbers.slice(0, maxLength)
+	}
+
+	return numbers ? parseInt(numbers) : null
 }
 
 export const formatCardNumber = (value, { autocomplete = false } = {}) => {
@@ -34,8 +39,8 @@ export const formatCardNumber = (value, { autocomplete = false } = {}) => {
 	let numbers = value?.match(/\d+/g)?.join('').slice(0, 16) ?? ''
 
 	if (autocomplete) {
-		const missingNumbers = 16 - numbers.length
-		numbers += repeatString(missingNumbers)
+		const cuantity = 16 - numbers.length
+		numbers += repeatString(cuantity)
 	}
 
 	return numbers.replace(/([\d•]{4})/g, '$1 ').trim()
@@ -45,20 +50,32 @@ export const formatCardExpiredDate = (value, { autocomplete = false } = {}) => {
 	value = transformNumberToString(value)
 	let numbers = value?.match(/\d+/g)?.join('').slice(0, 4) ?? ''
 	if (autocomplete) {
-		const missingNumbers = 4 - numbers.length
-		numbers += repeatString(missingNumbers)
+		const cuantity = 4 - numbers.length
+		numbers += repeatString(cuantity)
 	}
 
 	return numbers.replace(/([\d•]{2})/g, '$1/').slice(0, 5)
 }
+
 export const formatCCV = (value, { autocomplete = false } = {}) => {
 	value = transformNumberToString(value)
 	let numbers = value?.match(/\d+/g)?.join('').slice(0, 3) ?? ''
 
 	if (autocomplete) {
-		const missingNumbers = 3 - numbers.length
-		numbers += repeatString(missingNumbers)
+		const cuantity = 3 - numbers.length
+		numbers += repeatString(cuantity)
 	}
 
 	return numbers
+}
+
+export const formatSpaceByWord = (
+	value,
+	{ canAcceptNumbers = false, maxLegth = 100 } = {}
+) => {
+	let words = value?.replace(/\s+/g, ' ') ?? ''
+	if (!canAcceptNumbers) {
+		words = words.replace(/\d/g, '')
+	}
+	return words.slice(0, maxLegth)
 }

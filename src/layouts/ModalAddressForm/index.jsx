@@ -7,7 +7,7 @@ import {
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { usePostalCodeInfo } from '../../hooks/usePostalCodeInfo'
+import { usePostalCodeData } from '../../hooks/usePostalCodeData'
 import { AddressForm } from './AddressForm'
 import addressTemplate from '../../data/addressTemplate.json'
 
@@ -18,23 +18,29 @@ export const ModalAddressForm = ({
 	defaultAddress = {},
 }) => {
 	const formMethods = useForm({
+		mode: 'onBlur',
 		defaultValues: {
 			...addressTemplate,
 			...defaultAddress,
 		},
 	})
 
-	const { getValues, setValue } = formMethods
+	const { setValue, getValues, clearErrors } = formMethods
 	const onSubmit = data => console.log(data)
 	const title = defaultAddress.id ? 'Actualizar dirección' : 'Nueva dirección'
 
-	const statePostalCode = usePostalCodeInfo(getValues('postalCode'), {
+	const statePostalCode = usePostalCodeData(getValues('postalCode'), {
 		onSuccess: data => {
-			setValue('state', data[0].d_estado)
-			setValue('municipalityOrTownHall', data[0].D_mnpio)
+			setValue('state', data[0].state)
+			setValue('municipalityOrTownHall', data[0].municipalityOrTownHall)
+			setValue('cologne', data[0].cologne)
+		},
+		onError: () => {
+			setValue('state', null)
+			setValue('municipalityOrTownHall', null)
+			setValue('cologne', null)
 		},
 	})
-	const colognesName = statePostalCode.data?.map(code => code.d_asenta) ?? []
 
 	const [hasOutdoorNumber, setHasOutdoorNumber] = useState(
 		defaultAddress.outdoorNumber !== null
@@ -42,6 +48,7 @@ export const ModalAddressForm = ({
 
 	const handleChangeCheckboxOutdoorNumber = () => {
 		setValue('outdoorNumber', null)
+		clearErrors('outdoorNumber')
 		setHasOutdoorNumber(prev => !prev)
 	}
 
@@ -58,7 +65,6 @@ export const ModalAddressForm = ({
 						statePostalCode,
 						hasOutdoorNumber,
 						handleChangeCheckboxOutdoorNumber,
-						colognesName,
 					}}
 				/>
 			</ModalContent>
