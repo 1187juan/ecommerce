@@ -71,7 +71,7 @@ export const ModalPaymentForm = ({ isOpen, onClose, onCloseComplete }) => {
 							expirationDate={expirationDate}
 							ccv={ccv}
 							sx={{
-								fontSize: 'clamp(.75rem, 3vw ,1rem)',
+								fontSize: 'clamp(.75rem, 4vw ,1rem)',
 							}}
 						/>
 					</Grid>
