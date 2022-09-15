@@ -2,7 +2,7 @@ import { Box, Button, Flex, Text, useDisclosure } from '@chakra-ui/react'
 import { ModalPaymentForm } from '../ModalPaymentForm'
 
 export const SectionPayment = () => {
-	const { isOpen, onClose, onOpen } = useDisclosure({ defaultIsOpen: false })
+	const { isOpen, onClose, onOpen } = useDisclosure()
 	return (
 		<>
 			<Box

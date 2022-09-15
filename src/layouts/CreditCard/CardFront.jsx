@@ -12,29 +12,31 @@ export const CardFront = ({
 }) => {
 	return (
 		<Card sx={{ gridTemplateRows: '50% 50%' }}>
-			<Flex sx={{ justifyContent: 'space-between', fontSize: '2rem' }}>
-				<Box as='img' src={chip} alt='chip' sx={{ height: '2rem' }} />
-				{cardCompany === 'visa' && <LogoVisa width='4rem' height='2rem' />}
+			<Flex sx={{ justifyContent: 'space-between' }}>
+				<Box as='img' src={chip} alt='chip' sx={{ height: '2em' }} />
+				{cardCompany === 'visa' && <LogoVisa width='5em' height='2em' />}
 				{cardCompany === 'masterCard' && (
-					<LogoMasterCard width='4rem' height='2rem' />
+					<LogoMasterCard width='5em' height='2em' />
 				)}
 				{cardCompany === 'americanExpress' && (
-					<LogoAmericanExpress width='4rem' height='2rem' />
+					<LogoAmericanExpress width='5em' height='2em' />
 				)}
 				{cardCompany === 'other' && (
-					<CreditCardFrontIcon style={{ marginTop: '-.5rem' }} />
+					<CreditCardFrontIcon
+						style={{ marginTop: '-.25em', fontSize: '2em' }}
+					/>
 				)}
 			</Flex>
 			<Grid
 				sx={{
 					gridTemplateColumns: '1fr max-content',
-					columnGap: '1rem',
+					columnGap: '1em',
 				}}
 			>
 				<Text
 					sx={{
 						gridColumn: '2 span',
-						fontSize: 'xl',
+						fontSize: '1.25em',
 						fontWeight: 'semibold',
 					}}
 				>

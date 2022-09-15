@@ -7,7 +7,7 @@ export const Card = ({ children, sx = {} }) => {
 				display: 'grid',
 				width: '100%',
 				height: '100%',
-				padding: '1rem',
+				padding: '1em',
 				position: 'absolute',
 				backgroundImage:
 					'radial-gradient( circle farthest-corner at -5.7% -16.7%,  rgba(0,249,243,1) 0%, rgba(14,113,159,1) 90% )',
