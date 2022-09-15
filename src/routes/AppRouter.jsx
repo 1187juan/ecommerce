@@ -12,7 +12,6 @@ export const AppRouter = () => {
 					<Route path='/' element={<Home />} />
 					<Route path='/product/:productId' element={<Product />} />
 					<Route path='/tests' element={<Tests />} />
-					<Route path='*' element={<Error404 />} />
 				</Route>
 				<Route element={<PublicRoutes />}>
 					<Route path='/login' element={<div>login</div>} />
@@ -21,6 +20,7 @@ export const AppRouter = () => {
 					<Route path='/account' element={<div>account</div>} />
 					<Route path='/checkout' element={<Checkout />} />
 				</Route>
+				<Route path='*' element={<Error404 />} />
 			</Routes>
 		</BrowserRouter>
 	)
