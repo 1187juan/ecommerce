@@ -71,8 +71,7 @@ export const ModalPaymentForm = ({ isOpen, onClose, onCloseComplete }) => {
 							expirationDate={expirationDate}
 							ccv={ccv}
 							sx={{
-								width: '35vmax',
-								fontSize: 'clamp(.75rem, 1.5vmax ,1rem)',
+								fontSize: 'clamp(.75rem, 3vw ,1rem)',
 							}}
 						/>
 					</Grid>
@@ -81,6 +80,7 @@ export const ModalPaymentForm = ({ isOpen, onClose, onCloseComplete }) => {
 						<Input
 							size='lg'
 							placeholder='Número de tarjeta'
+							inputMode='numeric'
 							{...register('number', {
 								required: 'El campo es requerido.',
 								validate: value =>
@@ -123,6 +123,7 @@ export const ModalPaymentForm = ({ isOpen, onClose, onCloseComplete }) => {
 							<Input
 								size='lg'
 								placeholder='MM/AA'
+								inputMode='numeric'
 								{...register('expirationDate', {
 									required: 'El campo es requerido.',
 									validate: value =>
@@ -142,6 +143,7 @@ export const ModalPaymentForm = ({ isOpen, onClose, onCloseComplete }) => {
 							<Input
 								size='lg'
 								placeholder='CCV'
+								type='number'
 								{...register('ccv', {
 									required: 'El campo es requerido',
 									validate: value =>
