@@ -21,6 +21,7 @@ export const CreditCard = ({
 	name,
 	ccv = null,
 	sx = {},
+	...props
 }) => {
 	const numberFormat = formatCardNumber(number, { autocomplete: true })
 	const expirationDateFormat = expirationDate
@@ -51,6 +52,7 @@ export const CreditCard = ({
 				color: 'whiteAlpha.900',
 				...sx,
 			}}
+			{...props}
 		>
 			<CardFront
 				cardCompany={cardCompany}

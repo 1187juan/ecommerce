@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import { Logo } from '../components'
+import { LogoBetterWare } from '../components'
 
 export const Footer = () => {
 	return (
@@ -10,8 +10,9 @@ export const Footer = () => {
 				alignItems: 'center',
 			}}
 		>
-			<Logo
-				sx={{
+			<LogoBetterWare
+				style={{
+					width: '8rem',
 					opacity: 0.5,
 				}}
 			/>

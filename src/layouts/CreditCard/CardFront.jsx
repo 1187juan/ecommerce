@@ -14,12 +14,11 @@ export const CardFront = ({
 		<Card sx={{ gridTemplateRows: '50% 50%' }}>
 			<Flex sx={{ justifyContent: 'space-between' }}>
 				<Box as='img' src={chip} alt='chip' sx={{ height: '2em' }} />
-				{cardCompany === 'visa' && <LogoVisa width='5em' height='2em' />}
-				{cardCompany === 'masterCard' && (
-					<LogoMasterCard width='5em' height='2em' />
-				)}
+
+				{cardCompany === 'visa' && <LogoVisa height='2em' />}
+				{cardCompany === 'masterCard' && <LogoMasterCard height='2em' />}
 				{cardCompany === 'americanExpress' && (
-					<LogoAmericanExpress width='5em' height='2em' />
+					<LogoAmericanExpress height='2em' />
 				)}
 				{cardCompany === 'other' && (
 					<CreditCardFrontIcon

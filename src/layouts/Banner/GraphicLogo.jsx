@@ -1,5 +1,5 @@
 import { Flex, Image } from '@chakra-ui/react'
-import { LogoIcon } from '../../components'
+import { LogoBetterWareIcon } from '../../components'
 import energyBall from '../../assets/banner/energy-ball.webp'
 
 export const GraphicLogo = () => {
@@ -25,6 +25,7 @@ export const GraphicLogo = () => {
 					minWidth: '250%',
 					mixBlendMode: 'screen',
 					animation: 'turn1 10s infinite linear',
+					color: 'red',
 					'@keyframes turn1': {
 						to: {
 							transform: 'rotate(1turn)',
@@ -32,7 +33,7 @@ export const GraphicLogo = () => {
 					},
 				}}
 			/>
-			<LogoIcon height='85%' />
+			<LogoBetterWareIcon height='85%' />
 		</Flex>
 	)
 }

@@ -1,12 +1,6 @@
 export const LogoMasterCard = props => {
 	return (
-		<svg
-			xmlns='http://www.w3.org/2000/svg'
-			viewBox='0 0 24 14.833'
-			width='1.5em'
-			height='1.5em'
-			{...props}
-		>
+		<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 14.833' {...props}>
 			<path
 				data-name='Trazado 1'
 				d='M15.245 13.247h-6.49V1.584h6.49v11.663Z'

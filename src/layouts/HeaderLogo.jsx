@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import { Container, Logo } from '../components'
+import { Container, LogoBetterWare } from '../components'
 
 export const HeaderLogo = ({ position = 'sticky', sx = {} }) => {
 	return (
@@ -25,7 +25,7 @@ export const HeaderLogo = ({ position = 'sticky', sx = {} }) => {
 				}}
 			>
 				<Link to='/'>
-					<Logo />
+					<LogoBetterWare />
 				</Link>
 			</Container>
 		</Box>
