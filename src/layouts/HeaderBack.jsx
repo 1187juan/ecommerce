@@ -17,7 +17,6 @@ export const HeaderBack = ({ position = 'sticky', sx = {} }) => {
 				top: 0,
 				zIndex: 1,
 				height: '4rem',
-				marginBottom: '1rem',
 				backgroundColor: 'surface',
 				...sx,
 			}}
@@ -35,6 +34,9 @@ export const HeaderBack = ({ position = 'sticky', sx = {} }) => {
 					colorScheme='inherit'
 					leftIcon={<ChevronLeftIcon />}
 					onClick={() => navigate(-1)}
+					sx={{
+						padding: 0,
+					}}
 				>
 					Regresar
 				</Button>

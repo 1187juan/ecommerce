@@ -1,16 +1,21 @@
 import { Box, Flex } from '@chakra-ui/react'
+import { signOut } from 'firebase/auth'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { UserIcon } from '../boxicons'
+import { LogInIcon, UserIcon } from '../boxicons'
 import {
 	ButtonNav,
 	Container,
 	LogoBetterWare,
 	LogoBetterWareIcon,
 } from '../components'
+import { auth } from '../firebase'
 import { ButtonBasket } from './ButtonBasket'
 import { ButtonToggleTheme } from './ButtonToggleTheme'
 
 export const NavMenu = ({ colorScheme = 'gray' }) => {
+	const { isLogin } = useSelector(({ auth }) => auth)
+
 	return (
 		<Container
 			as='nav'
@@ -44,11 +49,23 @@ export const NavMenu = ({ colorScheme = 'gray' }) => {
 				}}
 			>
 				<Box as='li'>
-					<ButtonNav
-						colorScheme={colorScheme}
-						label='Cuenta'
-						icon={<UserIcon />}
-					/>
+					{isLogin && (
+						<ButtonNav
+							colorScheme={colorScheme}
+							label='Salir'
+							icon={<UserIcon />}
+							onClick={() => signOut(auth).catch(e => console.log(e))}
+						/>
+					)}
+					{!isLogin && (
+						<ButtonNav
+							as={Link}
+							to='/login'
+							colorScheme={colorScheme}
+							label='Acceder'
+							icon={<LogInIcon />}
+						/>
+					)}
 				</Box>
 				<Box as='li'>
 					<ButtonToggleTheme colorScheme={colorScheme} />

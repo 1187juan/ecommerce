@@ -22,10 +22,11 @@ export const HeaderLogo = ({ position = 'sticky', sx = {} }) => {
 					display: 'flex',
 					alignItems: 'center',
 					height: '100%',
+					color: 'primary',
 				}}
 			>
 				<Link to='/'>
-					<LogoBetterWare />
+					<LogoBetterWare height='2rem' />
 				</Link>
 			</Container>
 		</Box>

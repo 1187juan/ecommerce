@@ -1,7 +1,8 @@
+import { useSelector } from 'react-redux'
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 
 export const PrivateRoutes = () => {
-	const isLogin = true
+	const { isLogin } = useSelector(state => state.auth)
 	const { pathname } = useLocation()
 	localStorage.setItem('lastPath', pathname)
 

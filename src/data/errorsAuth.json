@@ -1,0 +1,9 @@
+{
+	"auth/popup-closed-by-user": "Cerraste la ventana emergente antes de finalizar la operación.",
+	"auth/internal-error": "Se ha producido un error de red, intentalo más tarde.",
+	"auth/email-already-in-use": "La dirección de correo electrónico ya está siendo utilizada por otra cuenta.",
+	"auth/wrong-password": "La contraseña no es válida o el usuario no tiene contraseña.",
+	"auth/user-not-found": "No hay ningún registro de usuario que corresponda a este identificador. Es posible que se haya eliminado al usuario.",
+	"auth/cancelled-popup-request": "Solicitud emergente cancelada.",
+	"auth/network-request-failed": "Solicitud de red fallida."
+}
