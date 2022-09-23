@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Functions
+functions/node_modules/
+functions/.env
+functions/serviceAccount.json
+functions/yarn.lock
