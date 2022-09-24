@@ -23,8 +23,12 @@ dist-ssr
 *.sln
 *.sw?
 
+
+yarn.lock
+*.env
+
 # Functions
 functions/node_modules/
 functions/.env
-functions/serviceAccount.json
+functions/serviceAccountKey.json
 functions/yarn.lock

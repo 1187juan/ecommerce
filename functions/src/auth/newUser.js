@@ -1,5 +1,5 @@
 const { FieldValue } = require('firebase-admin/firestore')
-const { auth } = require('firebase-functions')
+const { auth, logger } = require('firebase-functions')
 const { db } = require('../../firebase')
 
 const newUser = auth.user().onCreate(async user => {
@@ -10,12 +10,13 @@ const newUser = auth.user().onCreate(async user => {
 		batch.create(userRef, {
 			uid: user.uid,
 			created: FieldValue.serverTimestamp(),
-			timestamp: FieldValue.serverTimestamp(),
+			lastUpdate: FieldValue.serverTimestamp(),
 		})
 
 		await batch.commit()
 		return true
-	} catch (error) {
+	} catch ({ message }) {
+		logger.error(message)
 		return false
 	}
 })
