@@ -1,5 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import {
+	LayoutAuth,
+	LayoutHome,
+	LayoutProducts,
+	LayoutToHome,
+} from '../layouts'
+import {
 	Checkout,
 	Error404,
 	ForgotPassword,
@@ -18,20 +24,32 @@ export const AppRouter = () => {
 		<BrowserRouter>
 			<Routes>
 				<Route element={<GeneralRoutes />}>
-					<Route path='/' element={<Home />} />
-					<Route path='/product/:productId' element={<Product />} />
-					<Route path='/tests' element={<Tests />} />
+					<Route element={<LayoutHome />}>
+						<Route index path='/' element={<Home />} />
+					</Route>
+					<Route element={<LayoutProducts />}>
+						<Route path='/:page' element={<h1>pages</h1>} />
+						<Route path='/product/:productId' element={<Product />} />
+					</Route>
 				</Route>
+
 				<Route element={<PublicRoutes />}>
-					<Route path='/singup' element={<Singup />} />
-					<Route path='/login' element={<Login />} />
-					<Route path='/forgot-password' element={<ForgotPassword />} />
+					<Route element={<LayoutAuth />}>
+						<Route path='/singup' element={<Singup />} />
+						<Route path='/login' element={<Login />} />
+						<Route path='/forgot-password' element={<ForgotPassword />} />
+					</Route>
 				</Route>
+
 				<Route element={<PrivateRoutes />}>
 					<Route path='/account' element={<div>account</div>} />
 					<Route path='/checkout' element={<Checkout />} />
 				</Route>
-				<Route path='*' element={<Error404 />} />
+
+				<Route path='/tests' element={<Tests />} />
+				<Route element={<LayoutToHome />}>
+					<Route path='*' element={<Error404 />} />
+				</Route>
 			</Routes>
 		</BrowserRouter>
 	)
