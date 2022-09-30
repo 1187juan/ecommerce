@@ -16,6 +16,8 @@ export const CarouselImages = ({ imgs = [] }) => {
 					minWidth: '300px',
 					flex: '1.5 0',
 					position: 'relative',
+					objectFit: 'contain',
+					objectPosition: 'top',
 				}}
 			/>
 		)
@@ -29,6 +31,8 @@ export const CarouselImages = ({ imgs = [] }) => {
 					minWidth: '300px',
 					flex: '1.5 0',
 					position: 'relative',
+					objectFit: 'contain',
+					objectPosition: 'top',
 				}}
 			/>
 		)

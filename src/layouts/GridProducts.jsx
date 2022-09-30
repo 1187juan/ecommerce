@@ -32,7 +32,7 @@ export const GridProducts = ({ page = 1 }) => {
 				totalPages={totalPages}
 				setPage={setPage}
 				page={page}
-				sx={{ gridColumn: '3 span', padding: '1rem' }}
+				sx={{ gridColumn: '-1 / 1', padding: '1rem' }}
 			/>
 		</Container>
 	)
