@@ -1,9 +1,15 @@
 import { Flex, Grid, Image, Text } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
+import { asCurrency } from '../helpers'
 
-export const ProductCard = ({ name, images, price, id, sx, ...props }) => {
-	const description = images[0].description
-	const imageUrl = images[0].url
+export const ProductCard = ({
+	product: { name, imgs, price, id },
+	sx,
+	...props
+}) => {
+	const imgUrl = imgs?.[0].imgUrl ?? import.meta.env.VITE_PLACEHOLDER_320
+	const imgAlt = imgs?.[0].imgAlt ?? 'product'
+	const formatedPrice = asCurrency(price.value)
 
 	return (
 		<Grid
@@ -17,7 +23,7 @@ export const ProductCard = ({ name, images, price, id, sx, ...props }) => {
 			{...props}
 		>
 			<Link to={'/product/' + id}>
-				<Image src={imageUrl} alt={description} boxSize='100%' />
+				<Image src={imgUrl} alt={imgAlt} boxSize='100%' />
 			</Link>
 			<Flex
 				sx={{
@@ -41,7 +47,7 @@ export const ProductCard = ({ name, images, price, id, sx, ...props }) => {
 						fontWeight: 700,
 					}}
 				>
-					{price}
+					{formatedPrice}
 				</Text>
 			</Flex>
 		</Grid>

@@ -16,6 +16,7 @@
 		"@emotion/styled": "11",
 		"@reduxjs/toolkit": "1.8.5",
 		"@trendyol-js/react-carousel": "3.0.0",
+		"axios": "0.27.2",
 		"firebase": "9.10.0",
 		"framer-motion": "7.4.0",
 		"nanoid": "4.0.0",

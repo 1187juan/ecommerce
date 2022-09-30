@@ -12,6 +12,7 @@ import {
 	Home,
 	Login,
 	Product,
+	Products,
 	Singup,
 	Tests,
 } from '../pages'
@@ -28,7 +29,7 @@ export const AppRouter = () => {
 						<Route index path='/' element={<Home />} />
 					</Route>
 					<Route element={<LayoutProducts />}>
-						<Route path='/:page' element={<h1>pages</h1>} />
+						<Route path='/:page' element={<Products />} />
 						<Route path='/product/:productId' element={<Product />} />
 					</Route>
 				</Route>
