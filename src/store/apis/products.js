@@ -66,7 +66,58 @@ export const productsApi = createApi({
 				}
 			},
 		}),
+		getProduct: builder.query({
+			async queryFn(productId) {
+				try {
+					const productRef = doc(
+						db,
+						`products/data/items/${productId}/details`,
+						'data'
+					)
+					const resProduct = await getDoc(productRef)
+					const product = resProduct.data()
+
+					return { data: product }
+				} catch ({ message }) {
+					return { error: message }
+				}
+			},
+		}),
+		getProductsRandom: builder.query({
+			async queryFn(productId) {
+				try {
+					let productsData = JSON.parse(localStorage.getItem('productsData'))
+					if (!productsData) {
+						const productsDataRef = doc(db, 'products', 'data')
+						const resProductsData = await getDoc(productsDataRef)
+						productsData = resProductsData.data()
+						localStorage.setItem('productsData', JSON.stringify(productsData))
+					}
+
+					const { ids } = productsData
+					const newIds = ids.filter(({ id }) => id !== productId)
+					const idsRandom = newIds.sort(() => 0.5 - Math.random()).slice(0, 10)
+					const productsRef = collection(db, 'products/data/items')
+
+					const productsRandomPromises = []
+					idsRandom.forEach(id =>
+						productsRandomPromises.push(
+							getDoc(doc(productsRef, id)).then(res => res.data())
+						)
+					)
+					const productsRandom = await Promise.all(productsRandomPromises)
+
+					return { data: productsRandom }
+				} catch ({ message }) {
+					return { error: message }
+				}
+			},
+		}),
 	}),
 })
 
-export const { useGetProductsQuery } = productsApi
+export const {
+	useGetProductsQuery,
+	useGetProductQuery,
+	useGetProductsRandomQuery,
+} = productsApi

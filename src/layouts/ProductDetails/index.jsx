@@ -1,10 +1,16 @@
 import { Container } from '../../components'
-import { CarouselImages } from '../../layouts'
+import { CarouselImages, AlertErrorWithReload } from '../../layouts'
 import { Details } from './Details'
-import products from '../../data/products.json'
+import { useGetProductQuery } from '../../store/apis/products'
+import { Spinner } from '@chakra-ui/react'
 
 export const ProductDetails = ({ productId }) => {
-	const product = products.find(product => product.id === productId)
+	const { data: product, isLoading, error } = useGetProductQuery(productId)
+
+	if (isLoading)
+		return <Spinner size='xl' sx={{ marginLeft: 'calc(50% - 2rem)' }} />
+
+	if (error) return <AlertErrorWithReload />
 
 	return (
 		<Container
@@ -18,8 +24,8 @@ export const ProductDetails = ({ productId }) => {
 				backgroundColor: 'surface',
 			}}
 		>
-			<CarouselImages images={product.images} />
-			<Details {...product} />
+			<CarouselImages imgs={product.imgs} />
+			<Details product={product} />
 		</Container>
 	)
 }

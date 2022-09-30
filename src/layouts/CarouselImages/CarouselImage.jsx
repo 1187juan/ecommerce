@@ -1,6 +1,6 @@
 import { Box, Badge, Image } from '@chakra-ui/react'
 
-export const CarouselImage = ({ badge, imageUrl, description = '' }) => {
+export const CarouselImage = ({ badge, imgUrl, imgAlt = '' }) => {
 	return (
 		<Box
 			sx={{
@@ -19,7 +19,7 @@ export const CarouselImage = ({ badge, imageUrl, description = '' }) => {
 			>
 				{badge}
 			</Badge>
-			<Image src={imageUrl} alt={description} boxSize='100%' />
+			<Image src={imgUrl} alt={imgAlt} boxSize='100%' />
 		</Box>
 	)
 }

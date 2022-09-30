@@ -1,34 +1,18 @@
 import { Container, ProductCard } from '../components'
 import { useGetProductsQuery } from '../store/apis/products'
-import { Alert, AlertIcon, Button, Spinner } from '@chakra-ui/react'
-import { Pagination } from '../layouts'
+import { Pagination, AlertErrorWithReload } from '../layouts'
 import { useNavigate } from 'react-router-dom'
+import { Spinner } from '@chakra-ui/react'
 
 export const GridProducts = ({ page = 1 }) => {
-	const { data, isLoading, error, refetch, isFetching } =
-		useGetProductsQuery(page)
+	const { data, isLoading, error } = useGetProductsQuery(page)
 	const navigate = useNavigate()
 	const setPage = page => navigate('/' + page)
 
 	if (isLoading)
 		return <Spinner size='xl' sx={{ marginLeft: 'calc(50% - 2rem)' }} />
 
-	if (error) {
-		return (
-			<Alert status='error'>
-				<AlertIcon />
-				{error}
-				<Button
-					variant='ghost'
-					colorScheme='iherit'
-					onClick={refetch}
-					isLoading={isFetching}
-				>
-					Reintentar
-				</Button>
-			</Alert>
-		)
-	}
+	if (error) return <AlertErrorWithReload error={error} />
 
 	const { results: products, totalPages } = data
 

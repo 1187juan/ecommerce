@@ -1,6 +1,11 @@
 import { Grid, Heading, Text, Button, Badge } from '@chakra-ui/react'
+import { asCurrency } from '../../helpers'
 
-export const Details = ({ name, description, price }) => {
+export const Details = ({
+	product: { name, description = '', summary, price },
+}) => {
+	const formatedPrice = asCurrency(price.value)
+
 	return (
 		<Grid
 			sx={{
@@ -28,9 +33,10 @@ export const Details = ({ name, description, price }) => {
 					fontSize: '3xl',
 				}}
 			>
-				{price}
+				{formatedPrice}
 			</Text>
 			<Text>{description}</Text>
+			{description.length < 120 && <Text>{summary}</Text>}
 			<Button size='lg'>Agregar</Button>
 		</Grid>
 	)

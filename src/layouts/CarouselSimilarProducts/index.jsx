@@ -1,12 +1,20 @@
-import { Text } from '@chakra-ui/react'
-import products from '../../data/products.json'
+import { Text, Spinner } from '@chakra-ui/react'
 import { Container, ProductCard } from '../../components'
 import { Carousel } from './Carousel'
+import { useGetProductsRandomQuery } from '../../store/apis/products'
+import { AlertErrorWithReload } from '../AlertErrorWithReload'
 
 export const CarouselSimilarProducts = ({ productId }) => {
-	const similarProducts = products
-		.filter(product => product.id !== productId)
-		.slice(0, 10)
+	const {
+		data: similarProducts,
+		isLoading,
+		error,
+	} = useGetProductsRandomQuery(productId)
+
+	if (isLoading)
+		return <Spinner size='xl' sx={{ marginLeft: 'calc(50% - 2rem)' }} />
+
+	if (error) return <AlertErrorWithReload error={error} />
 
 	return (
 		<Container
@@ -25,7 +33,7 @@ export const CarouselSimilarProducts = ({ productId }) => {
 				{similarProducts.map((similarProduct, index) => (
 					<ProductCard
 						key={index}
-						{...similarProduct}
+						product={similarProduct}
 						sx={{
 							width: '35vmin',
 						}}
