@@ -6,5 +6,5 @@ export const PrivateRoutes = () => {
 	const { pathname } = useLocation()
 	localStorage.setItem('lastPath', pathname)
 
-	return isLogin ? <Outlet /> : <Navigate to='login' />
+	return isLogin ? <Outlet /> : <Navigate to='/login' replace />
 }

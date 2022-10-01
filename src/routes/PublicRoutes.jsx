@@ -4,7 +4,7 @@ import { Navigate, Outlet } from 'react-router-dom'
 export const PublicRoutes = () => {
 	const { isLogin } = useSelector(state => state.auth)
 
-	const lastPath = localStorage.getItem('lastPath', '/')
+	const lastPath = localStorage.getItem('lastPath') ?? '/'
 
-	return isLogin ? <Navigate to={lastPath} /> : <Outlet />
+	return isLogin ? <Navigate to={lastPath} replace /> : <Outlet />
 }
