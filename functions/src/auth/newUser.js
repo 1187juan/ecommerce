@@ -6,11 +6,19 @@ const newUser = auth.user().onCreate(async user => {
 	try {
 		const batch = db.batch()
 		const userRef = db.collection('users').doc(user.uid)
+		const basketRef = db.collection('baskets').doc(user.uid)
 
 		batch.create(userRef, {
 			uid: user.uid,
 			created: FieldValue.serverTimestamp(),
 			lastUpdate: FieldValue.serverTimestamp(),
+		})
+
+		batch.create(basketRef, {
+			id: user.uid,
+			created: FieldValue.serverTimestamp(),
+			items: null,
+			addressId: null,
 		})
 
 		await batch.commit()

@@ -75,6 +75,8 @@ export const productsApi = createApi({
 						'data'
 					)
 					const resProduct = await getDoc(productRef)
+					if (!resProduct.exists()) return { data: null }
+
 					const product = resProduct.data()
 
 					return { data: product }

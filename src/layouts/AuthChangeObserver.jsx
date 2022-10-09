@@ -5,7 +5,7 @@ import { auth } from '../firebase'
 import { setCurrentUser } from '../store/slices/auth'
 import { Progress } from '@chakra-ui/react'
 
-export const LoadingPages = ({ children }) => {
+export const AuthChangeObserver = ({ children }) => {
 	const { isLoading } = useSelector(state => state.auth)
 	const dispatch = useDispatch()
 
@@ -25,6 +25,7 @@ export const LoadingPages = ({ children }) => {
 			}
 			return dispatch(setCurrentUser(data))
 		})
+
 		return unsubscribe
 	}, [])
 

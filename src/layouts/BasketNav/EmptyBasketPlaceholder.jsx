@@ -1,4 +1,5 @@
 import { Box, Grid, Text } from '@chakra-ui/react'
+import { CartIcon } from '../../boxicons'
 
 export const EmptyBasketPlaceholder = () => {
 	return (
@@ -10,7 +11,9 @@ export const EmptyBasketPlaceholder = () => {
 				textAlign: 'center',
 			}}
 		>
-			<Box fontSize='6xl'>🛒</Box>
+			<Box fontSize='6xl' color='onSurfaceMedium'>
+				<CartIcon />
+			</Box>
 			<Text fontSize='lg'>
 				Aun no tienes productos
 				<br />

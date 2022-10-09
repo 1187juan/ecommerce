@@ -1,10 +1,15 @@
 import { Grid, Heading, Text, Button, Badge } from '@chakra-ui/react'
 import { asCurrency } from '../../helpers'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { ButtonBasket } from './ButtonBasket'
 
-export const Details = ({
-	product: { name, description = '', summary, price },
-}) => {
+export const Details = ({ product }) => {
+	const { name, description = '', summary, price, id } = product
+	const { auth, basket } = useSelector(state => state)
 	const formatedPrice = asCurrency(price.value)
+	const basketItem = basket.data?.items?.find(item => item.id === id) ?? null
+	const productQuantity = basketItem?.quantity ?? 0
 
 	return (
 		<Grid
@@ -37,7 +42,19 @@ export const Details = ({
 			</Text>
 			<Text>{description}</Text>
 			{description.length < 120 && <Text>{summary}</Text>}
-			<Button size='lg'>Agregar</Button>
+
+			{!auth.isLogin && (
+				<Button as={Link} to='/login' size='lg'>
+					Agregar
+				</Button>
+			)}
+			{auth.isLogin && (
+				<ButtonBasket
+					productId={id}
+					quantity={productQuantity}
+					limit={Number(basketItem?.addToCartMax ?? 10)}
+				/>
+			)}
 		</Grid>
 	)
 }

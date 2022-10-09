@@ -10,7 +10,7 @@ import {
 	LogoBetterWareIcon,
 } from '../components'
 import { auth } from '../firebase'
-import { ButtonBasket } from './ButtonBasket'
+import { BasketNav } from './BasketNav'
 import { ButtonToggleTheme } from './ButtonToggleTheme'
 
 export const NavMenu = ({ colorScheme = 'gray' }) => {
@@ -71,7 +71,7 @@ export const NavMenu = ({ colorScheme = 'gray' }) => {
 					<ButtonToggleTheme colorScheme={colorScheme} />
 				</Box>
 				<Box as='li'>
-					<ButtonBasket colorScheme={colorScheme} />
+					<BasketNav colorScheme={colorScheme} />
 				</Box>
 			</Flex>
 		</Container>

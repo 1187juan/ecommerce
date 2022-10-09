@@ -1,12 +1,14 @@
 import { Grid } from '@chakra-ui/react'
-import basketIds from '../../data/basketIds'
+import { useSelector } from 'react-redux'
 import { BasketItem } from './BasketItem'
 
 export const BasketGrid = () => {
+	const { data: basket } = useSelector(({ basket }) => basket)
+
 	return (
 		<Grid as='ul' sx={{ listStyle: 'none' }}>
-			{basketIds.map(({ id, quantity }) => (
-				<BasketItem key={id} id={id} quantity={quantity} />
+			{basket.items.map(item => (
+				<BasketItem key={item.id} {...item} />
 			))}
 		</Grid>
 	)

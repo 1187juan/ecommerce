@@ -1,13 +1,10 @@
-import products from '../../data/products.json'
 import { Divider, Flex, Grid, Image, Link, Text } from '@chakra-ui/react'
 import { asCurrency } from '../../helpers'
 import { Link as LinkRRD } from 'react-router-dom'
-import { ButtonCounter } from '../../components'
+import { ButtonBasketItem } from '../ButtonBasketItem'
 
-export const BasketItem = ({ id, quantity }) => {
-	const { name, price, images } = products.find(product => product.id === id)
-
-	const total = price * quantity
+export const BasketItem = ({ quantity, price, name, imgs, id }) => {
+	const total = quantity * price.value
 	const totalCurrency = asCurrency(total)
 
 	return (
@@ -21,9 +18,13 @@ export const BasketItem = ({ id, quantity }) => {
 				}}
 			>
 				<Image
-					src={images[0].url}
+					src={imgs[0].imgUrl}
 					alt={name}
-					sx={{ width: 'min(30%, 12rem)', margin: 'auto' }}
+					sx={{
+						width: 'min(30%, 12rem)',
+						margin: 'auto',
+						borderRadius: '.25rem',
+					}}
 				/>
 				<Flex
 					sx={{
@@ -50,13 +51,7 @@ export const BasketItem = ({ id, quantity }) => {
 							alignItems: 'center',
 						}}
 					>
-						<ButtonCounter
-							size='lg'
-							value={quantity}
-							onAdd={() => console.log('onAdd')}
-							onSubtract={() => console.log('onSubtract')}
-							limit={10}
-						/>
+						<ButtonBasketItem productId={id} quantity={quantity} />
 					</Flex>
 				</Flex>
 			</Flex>

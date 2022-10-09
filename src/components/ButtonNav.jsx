@@ -8,6 +8,7 @@ const badgeStyles = {
 	height: '1.25rem',
 	display: 'flex',
 	alignItems: 'center',
+	justifyContent: 'center',
 	padding: '.25rem',
 	fontSize: '.75rem',
 	backgroundColor: 'red',
