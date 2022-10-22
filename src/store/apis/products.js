@@ -1,8 +1,6 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 import {
 	collection,
-	doc,
-	getDoc,
 	getDocs,
 	limit,
 	orderBy,
@@ -10,22 +8,22 @@ import {
 	startAfter,
 } from 'firebase/firestore'
 import { db } from '../../firebase'
+import {
+	getProductDetails,
+	getProductsById,
+	getProductsData,
+	returnDocs,
+} from '../../helpers'
 
 export const productsApi = createApi({
 	reducerPath: 'productsApi',
 	baseQuery: fakeBaseQuery(),
+	tagTypes: ['products'],
 	endpoints: builder => ({
 		getProducts: builder.query({
 			async queryFn(page) {
 				try {
-					let productsData = JSON.parse(localStorage.getItem('productsData'))
-
-					if (!productsData) {
-						const productsDataRef = doc(db, 'products', 'data')
-						const resProductsData = await getDoc(productsDataRef)
-						productsData = resProductsData.data()
-						localStorage.setItem('productsData', JSON.stringify(productsData))
-					}
+					const productsData = await getProductsData()
 
 					const ids = productsData.ids.sort((a, b) => a - b)
 					const totalProducts = productsData.ids.length
@@ -47,9 +45,8 @@ export const productsApi = createApi({
 						limit(pageSize),
 						startAfter(ids[indexFirstId])
 					)
-					const res = await getDocs(q)
-					const products = []
-					res.forEach(item => products.push(item.data()))
+					const productsRes = await getDocs(q)
+					const products = returnDocs(productsRes)
 
 					return {
 						data: {
@@ -69,16 +66,7 @@ export const productsApi = createApi({
 		getProduct: builder.query({
 			async queryFn(productId) {
 				try {
-					const productRef = doc(
-						db,
-						`products/data/items/${productId}/details`,
-						'data'
-					)
-					const resProduct = await getDoc(productRef)
-					if (!resProduct.exists()) return { data: null }
-
-					const product = resProduct.data()
-
+					const product = await getProductDetails(productId)
 					return { data: product }
 				} catch ({ message }) {
 					return { error: message }
@@ -88,26 +76,10 @@ export const productsApi = createApi({
 		getProductsRandom: builder.query({
 			async queryFn(productId) {
 				try {
-					let productsData = JSON.parse(localStorage.getItem('productsData'))
-					if (!productsData) {
-						const productsDataRef = doc(db, 'products', 'data')
-						const resProductsData = await getDoc(productsDataRef)
-						productsData = resProductsData.data()
-						localStorage.setItem('productsData', JSON.stringify(productsData))
-					}
-
-					const { ids } = productsData
+					const { ids } = await getProductsData()
 					const newIds = ids.filter(({ id }) => id !== productId)
 					const idsRandom = newIds.sort(() => 0.5 - Math.random()).slice(0, 10)
-					const productsRef = collection(db, 'products/data/items')
-
-					const productsRandomPromises = []
-					idsRandom.forEach(id =>
-						productsRandomPromises.push(
-							getDoc(doc(productsRef, id)).then(res => res.data())
-						)
-					)
-					const productsRandom = await Promise.all(productsRandomPromises)
+					const productsRandom = await getProductsById(idsRandom, 'success')
 
 					return { data: productsRandom }
 				} catch ({ message }) {

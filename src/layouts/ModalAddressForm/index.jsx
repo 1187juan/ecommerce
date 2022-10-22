@@ -15,19 +15,20 @@ export const ModalAddressForm = ({
 	isOpen = false,
 	onClose,
 	onCloseComplete,
-	defaultAddress = {},
+	defaultAddress,
+	isLoading = false,
+	onSubmit,
 }) => {
 	const formMethods = useForm({
 		mode: 'onBlur',
 		defaultValues: {
 			...addressTemplate,
-			...defaultAddress,
+			...(defaultAddress ?? {}),
 		},
 	})
 
 	const { setValue, getValues, clearErrors } = formMethods
-	const onSubmit = data => console.log(data)
-	const title = defaultAddress.id ? 'Actualizar dirección' : 'Nueva dirección'
+	const title = defaultAddress ? 'Actualizar dirección' : 'Nueva dirección'
 
 	const statePostalCode = usePostalCodeData(getValues('postalCode'), {
 		onSuccess: data => {
@@ -43,7 +44,7 @@ export const ModalAddressForm = ({
 	})
 
 	const [hasOutdoorNumber, setHasOutdoorNumber] = useState(
-		defaultAddress.outdoorNumber !== null
+		defaultAddress?.outdoorNumber !== null
 	)
 
 	const handleChangeCheckboxOutdoorNumber = () => {
@@ -65,6 +66,7 @@ export const ModalAddressForm = ({
 						statePostalCode,
 						hasOutdoorNumber,
 						handleChangeCheckboxOutdoorNumber,
+						isLoading,
 					}}
 				/>
 			</ModalContent>

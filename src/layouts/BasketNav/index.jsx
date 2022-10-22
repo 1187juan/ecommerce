@@ -1,29 +1,18 @@
-import { useDisclosure, useToast } from '@chakra-ui/react'
+import { useDisclosure } from '@chakra-ui/react'
 import { ButtonNav } from '../../components'
 import { Link, useNavigate } from 'react-router-dom'
 import { CartIcon } from '../../boxicons'
 import { useSelector } from 'react-redux'
 import { DrawerBasket } from '../DrawerBasket'
-import { useEffect } from 'react'
 
 export const BasketNav = ({ colorScheme }) => {
-	const { isLogin } = useSelector(({ auth }) => auth)
-	const { isOpen, onClose, onOpen } = useDisclosure()
+	const auth = useSelector(state => state.auth)
+	const basket = useSelector(state => state.basket)
+	const { isOpen, onClose, onOpen } = useDisclosure({ defaultIsOpen: true })
 	const navigate = useNavigate()
-	const { isLoading, error, data: basket } = useSelector(({ basket }) => basket)
-	const toast = useToast()
+	const itemsNumber = basket.items.length
 
-	useEffect(() => {
-		if (error) {
-			toast({
-				status: 'error',
-				title: error,
-				isClosable: true,
-			})
-		}
-	}, [error])
-
-	if (!isLogin)
+	if (!auth.isLogin)
 		return (
 			<ButtonNav
 				as={Link}
@@ -39,10 +28,11 @@ export const BasketNav = ({ colorScheme }) => {
 				colorScheme={colorScheme}
 				onClick={onOpen}
 				label='Carrito'
-				badge={basket?.items?.length ?? 0}
+				badge={itemsNumber}
 				icon={<CartIcon />}
-				isLoading={isLoading}
+				isLoading={basket.isLoading}
 			/>
+
 			<DrawerBasket isOpen={isOpen} onClose={onClose} navigate={navigate} />
 		</>
 	)

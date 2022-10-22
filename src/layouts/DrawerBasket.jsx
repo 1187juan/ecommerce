@@ -18,13 +18,16 @@ import { EmptyBasketPlaceholder } from './BasketNav/EmptyBasketPlaceholder'
 
 export const DrawerBasket = ({ isOpen, onClose, navigate }) => {
 	const isMobile = useMediaQuery('(max-width:599px)')
-	const { data: basket, isLoading } = useSelector(({ basket }) => basket)
-	const hasItems = !!basket?.items
+	const basket = useSelector(({ basket }) => basket)
+	const hasItems = Boolean(basket.items.length)
+	const hasErros = basket.itemsDetails.some(({ status }) => status === 'error')
 
 	let subTotal = 0
-	basket?.items?.forEach(
-		({ price, quantity }) => (subTotal += price.value * quantity)
-	)
+	basket.itemsDetails.forEach(itemDetails => {
+		if (itemDetails.status === 'error') return null
+		subTotal += itemDetails.data.price.value * itemDetails.data.quantity
+	})
+
 	const subTotalAsCurrency = asCurrency(subTotal)
 
 	return (
@@ -51,8 +54,8 @@ export const DrawerBasket = ({ isOpen, onClose, navigate }) => {
 					</Text>
 					<Button
 						onClick={() => navigate('/checkout')}
-						isDisabled={!hasItems}
-						isLoading={isLoading}
+						isDisabled={!hasItems || hasErros}
+						isLoading={basket.isLoading}
 						size='lg'
 						sx={{ width: 'min(100%, 20rem)', margin: '0 auto' }}
 					>

@@ -25,8 +25,8 @@ export const CarouselImages = ({ imgs = [] }) => {
 	if (hasOneImg)
 		return (
 			<Image
-				src={imgs[0].imgUrl}
-				alt={imgs[0].imgAlt}
+				src={imgs[0].url}
+				alt={imgs[0].alt}
 				sx={{
 					minWidth: '300px',
 					flex: '1.5 0',
@@ -39,11 +39,11 @@ export const CarouselImages = ({ imgs = [] }) => {
 
 	return (
 		<Carousel>
-			{imgs.map(({ imgUrl, imgAlt }, i) => (
+			{imgs.map(({ url, alt }, i) => (
 				<CarouselImage
 					key={i}
-					imgUrl={imgUrl}
-					description={imgAlt}
+					imgUrl={url}
+					description={alt}
 					badge={i + 1 + '/' + quantityImgs}
 				/>
 			))}

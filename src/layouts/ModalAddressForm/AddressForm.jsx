@@ -39,6 +39,7 @@ export const AddressForm = ({
 	clearErrors,
 	watch,
 	setValue,
+	isLoading = false,
 }) => {
 	return (
 		<ModalBody
@@ -50,7 +51,7 @@ export const AddressForm = ({
 				gridTemplateRows: 'repeat(11, minmax(8rem, max-content ))',
 			}}
 		>
-			<FormControl isInvalid={errors.nameAndSurname}>
+			<FormControl isInvalid={errors.nameAndSurname} isDisabled={isLoading}>
 				<FormLabel>Nombre y apellido</FormLabel>
 				<Input
 					size='lg'
@@ -68,7 +69,10 @@ export const AddressForm = ({
 				<FormErrorMessage>{errors.nameAndSurname?.message}</FormErrorMessage>
 			</FormControl>
 
-			<FormControl isInvalid={errors.postalCode || statePostalCode.error}>
+			<FormControl
+				isInvalid={errors.postalCode || statePostalCode.error}
+				isDisabled={isLoading}
+			>
 				<FormLabel>Código postal</FormLabel>
 				<InputGroup>
 					<Input
@@ -133,17 +137,17 @@ export const AddressForm = ({
 				</FormErrorMessage>
 			</FormControl>
 
-			<FormControl>
+			<FormControl isDisabled={isLoading}>
 				<FormLabel>Estado</FormLabel>
 				<Input size='lg' disabled {...register('state')} />
 			</FormControl>
 
-			<FormControl>
+			<FormControl isDisabled={isLoading}>
 				<FormLabel>Municipio/Alcaldía</FormLabel>
 				<Input size='lg' disabled {...register('municipalityOrTownHall')} />
 			</FormControl>
 
-			<FormControl isInvalid={errors.cologne}>
+			<FormControl isInvalid={errors.cologne} isDisabled={isLoading}>
 				<FormLabel>Colonía</FormLabel>
 				<Select
 					size='lg'
@@ -162,7 +166,7 @@ export const AddressForm = ({
 				<FormErrorMessage>{errors.cologne?.message}</FormErrorMessage>
 			</FormControl>
 
-			<FormControl isInvalid={errors.street}>
+			<FormControl isInvalid={errors.street} isDisabled={isLoading}>
 				<FormLabel>Calle</FormLabel>
 				<Input
 					size='lg'
@@ -176,7 +180,7 @@ export const AddressForm = ({
 				<FormErrorMessage>{errors.street?.message}</FormErrorMessage>
 			</FormControl>
 
-			<FormControl isInvalid={errors.outdoorNumber}>
+			<FormControl isInvalid={errors.outdoorNumber} isDisabled={isLoading}>
 				<FormLabel>Número exterior</FormLabel>
 				<InputGroup>
 					<Input
@@ -218,7 +222,7 @@ export const AddressForm = ({
 				<FormErrorMessage>{errors.outdoorNumber?.message}</FormErrorMessage>
 			</FormControl>
 
-			<FormControl isInvalid={errors.interiorNumber}>
+			<FormControl isInvalid={errors.interiorNumber} isDisabled={isLoading}>
 				<FormLabel>Número interior/Depto (opcional)</FormLabel>
 				<Input
 					size='lg'
@@ -235,7 +239,7 @@ export const AddressForm = ({
 
 			<Grid sx={{ gridTemplateRows: '2rem 8.5rem 8.5rem' }}>
 				<Text>Entre qué calles está (opcional)</Text>
-				<FormControl>
+				<FormControl isDisabled={isLoading}>
 					<FormLabel>Calle 1</FormLabel>
 					<Input
 						size='lg'
@@ -249,7 +253,7 @@ export const AddressForm = ({
 					/>
 				</FormControl>
 
-				<FormControl>
+				<FormControl isDisabled={isLoading}>
 					<FormLabel>Calle 2</FormLabel>
 					<Input
 						size='lg'
@@ -266,6 +270,7 @@ export const AddressForm = ({
 
 			<FormControl
 				isInvalid={errors.phoneNumber}
+				isDisabled={isLoading}
 				sx={{ paddingBottom: '3rem' }}
 			>
 				<FormLabel>Teléfono de contacto</FormLabel>
@@ -298,6 +303,7 @@ export const AddressForm = ({
 
 			<FormControl
 				isInvalid={errors.indications}
+				isDisabled={isLoading}
 				sx={{ paddingBottom: '3rem' }}
 			>
 				<FormLabel>Indicaciones adicionales</FormLabel>
@@ -323,7 +329,12 @@ export const AddressForm = ({
 				<FormErrorMessage>{errors.indications?.message} </FormErrorMessage>
 			</FormControl>
 
-			<Button size='lg' type='submit' sx={{ marginTop: 'auto' }}>
+			<Button
+				size='lg'
+				type='submit'
+				sx={{ marginTop: 'auto' }}
+				isLoading={isLoading}
+			>
 				Enviar
 			</Button>
 		</ModalBody>

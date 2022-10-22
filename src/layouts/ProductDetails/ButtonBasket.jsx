@@ -1,12 +1,16 @@
 import { Button } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { ButtonCounter } from '../../components/ButtonCounter'
 import { useDebounceValue } from '../../hooks/useDebounceValue'
-import { updateBasketItem } from '../../store/slices/basket/thunks'
+import { setBasketItem } from '../../store/slices/basket'
 
-export const ButtonBasket = ({ productId, quantity, limit }) => {
-	const { isLoading } = useSelector(({ basket }) => basket)
+export const ButtonBasket = ({
+	productId,
+	quantity,
+	limit,
+	isLoading = false,
+}) => {
 	const dispatch = useDispatch()
 	const [value, setValue] = useState(quantity)
 	const debounceValue = useDebounceValue(value, 1000)
@@ -14,17 +18,13 @@ export const ButtonBasket = ({ productId, quantity, limit }) => {
 	useEffect(() => {
 		if (quantity !== debounceValue) {
 			dispatch(
-				updateBasketItem({
-					basketItemId: productId,
-					basketItemQuantity: debounceValue,
+				setBasketItem({
+					id: productId,
+					quantity: debounceValue,
 				})
 			)
 		}
 	}, [debounceValue])
-
-	useEffect(() => {
-		setValue(quantity)
-	}, [quantity])
 
 	if (value < 1)
 		return (

@@ -1,45 +1,65 @@
-import { useDisclosure } from '@chakra-ui/react'
+import { useDisclosure, useToast } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { searchItemById } from '../../helpers'
 import { ModalAddressForm } from '../../layouts'
-import { CardNewAddress } from './CardNewAddress'
+import { deleteProperty, searchItemById, setItemById } from '../../helpers'
 import { FormAddresses } from './FormAddresses'
+import { CardNewAddress } from './CardNewAddress'
+import { useDispatch, useSelector } from 'react-redux'
+import { collection, setDoc, doc, Timestamp } from 'firebase/firestore'
+import { db } from '../../firebase'
+import { nanoid } from 'nanoid'
+import { setAddresses } from '../../store/slices/addresses'
 
-export const FormAddressSelection = ({
-	addresses = [],
-	onSuccess,
-	sx = {},
-	...props
-}) => {
-	const { register, handleSubmit, formState } = useForm()
-
-	const onSubmit = ({ addressId }) => {
-		const address = searchItemById(addressId, addresses)
-		onSuccess(address)
-	}
-
+export const FormAddressSelection = ({ sx = {}, ...props }) => {
+	const { addresses, auth } = useSelector(state => state)
+	const dispatch = useDispatch()
+	const toast = useToast()
+	const [isLoading, setIsLoading] = useState(false)
+	const hasAddresses = Boolean(addresses.length)
+	const formMethods = useForm()
 	const { isOpen, onClose, onOpen } = useDisclosure()
 	const [addressToEdit, setAddressToEdit] = useState(null)
-	const resetAddressToEdit = () => setAddressToEdit(null)
 
 	const onEditAddress = addressId => {
 		setAddressToEdit(searchItemById(addressId, addresses))
 		onOpen()
 	}
 
-	const hasAddresses = !!addresses.length
+	const onSubmitAddresses = ({ addressId }) => {
+		const address = searchItemById(addressId, addresses)
+	}
+
+	const onSubmitAddress = async data => {
+		try {
+			setIsLoading(true)
+			const addressesRef = collection(db, `users/${auth.uid}/addresses`)
+			const addressId = data.id ?? nanoid()
+			data.latUpdate = Timestamp.now()
+			const address = { ...data, id: addressId }
+			const addressWithoutId = deleteProperty('id', data)
+
+			await setDoc(doc(addressesRef, addressId), addressWithoutId)
+			const newAddresses = setItemById(address, addresses).sort(
+				(a, b) => b.lastUpdate - a.lastUpdate
+			)
+
+			dispatch(setAddresses(newAddresses))
+			onClose()
+		} catch ({ message }) {
+			toast({ status: 'error', title: message, isClosable: true })
+		}
+		setIsLoading(false)
+	}
 
 	return (
 		<>
 			{hasAddresses && (
 				<FormAddresses
+					{...formMethods}
 					addresses={addresses}
-					handleSubmit={handleSubmit}
-					onSubmit={onSubmit}
+					onSubmit={onSubmitAddresses}
 					onEditAddress={onEditAddress}
-					register={register}
-					formState={formState}
 					onOpen={onOpen}
 					sx={sx}
 					props={props}
@@ -48,12 +68,14 @@ export const FormAddressSelection = ({
 
 			{!hasAddresses && <CardNewAddress onOpen={onOpen} />}
 
-			{(addressToEdit ?? isOpen) && (
+			{isOpen && (
 				<ModalAddressForm
 					onClose={onClose}
 					isOpen={isOpen}
-					onCloseComplete={resetAddressToEdit}
-					defaultAddress={addressToEdit ?? {}}
+					onCloseComplete={() => setAddressToEdit(null)}
+					defaultAddress={addressToEdit}
+					isLoading={isLoading}
+					onSubmit={onSubmitAddress}
 				/>
 			)}
 		</>

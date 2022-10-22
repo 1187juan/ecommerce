@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useIinitializeBasket } from '../hooks'
 import {
 	LayoutAuth,
 	LayoutHome,
@@ -21,6 +22,8 @@ import { PrivateRoutes } from './PrivateRoutes'
 import { PublicRoutes } from './PublicRoutes'
 
 export const AppRouter = () => {
+	useIinitializeBasket()
+
 	return (
 		<BrowserRouter>
 			<Routes>
@@ -42,10 +45,10 @@ export const AppRouter = () => {
 					</Route>
 				</Route>
 
-				<Route element={<PrivateRoutes />}>
+				{/* <Route element={<PrivateRoutes />}>
 					<Route path='/account' element={<div>account</div>} />
 					<Route path='/checkout' element={<Checkout />} />
-				</Route>
+				</Route> */}
 
 				<Route path='/tests' element={<Tests />} />
 				<Route element={<LayoutToHome />}>

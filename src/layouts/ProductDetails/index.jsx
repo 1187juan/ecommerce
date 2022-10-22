@@ -29,7 +29,7 @@ export const ProductDetails = ({ productId }) => {
 			}}
 		>
 			<CarouselImages key={nanoid()} imgs={product.imgs} />
-			<Details key={nanoid()} product={product} />
+			<Details key={nanoid()} {...product} />
 		</Container>
 	)
 }

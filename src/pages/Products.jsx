@@ -3,9 +3,10 @@ import { ErrorPage, GridProducts } from '../layouts'
 
 export const Products = () => {
 	const params = useParams()
-	const page = +params.page
+	const page = Number(params.page)
+	const isPage = page >= 1
 
-	if (!(page >= 1)) return <ErrorPage />
+	if (!isPage) return <ErrorPage />
 
 	if (page === 1) return <Navigate to='/' replace />
 

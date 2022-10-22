@@ -15,10 +15,9 @@ const newUser = auth.user().onCreate(async user => {
 		})
 
 		batch.create(basketRef, {
-			id: user.uid,
-			created: FieldValue.serverTimestamp(),
-			items: null,
+			items: [],
 			addressId: null,
+			creditCardId: null,
 		})
 
 		await batch.commit()

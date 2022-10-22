@@ -6,7 +6,7 @@ import { AlertErrorWithReload } from '../AlertErrorWithReload'
 
 export const CarouselSimilarProducts = ({ productId }) => {
 	const {
-		data: similarProducts,
+		data: products,
 		isLoading,
 		error,
 	} = useGetProductsRandomQuery(productId)
@@ -30,10 +30,10 @@ export const CarouselSimilarProducts = ({ productId }) => {
 				Más productos
 			</Text>
 			<Carousel>
-				{similarProducts.map((similarProduct, index) => (
+				{products.map((products, index) => (
 					<ProductCard
 						key={index}
-						product={similarProduct}
+						product={products}
 						sx={{
 							width: '35vmin',
 						}}

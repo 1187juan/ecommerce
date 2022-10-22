@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom'
+import { validateProductId } from '../helpers'
 import { CarouselSimilarProducts, ErrorPage, ProductDetails } from '../layouts'
 
 export const Product = () => {
 	const { productId } = useParams()
 
-	if (!(productId > 9999 && productId <= 99999))
-		return <ErrorPage to='/' replace />
+	if (!validateProductId(productId)) return <ErrorPage to='/' replace />
 
 	return (
 		<>

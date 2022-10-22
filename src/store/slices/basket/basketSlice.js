@@ -1,25 +1,39 @@
 import { createSlice } from '@reduxjs/toolkit'
+import addressTemplate from '../../../data/addressTemplate.json'
+import creditCardTemplate from '../../../data/creditCardTemplate.json'
 
+const initialState = {
+	isLoading: true,
+	items: [],
+	itemsDetails: [],
+	addressId: null,
+	address: addressTemplate,
+	creditCardId: null,
+	creditCard: creditCardTemplate,
+	error: null,
+}
 export const basketSlice = createSlice({
 	name: 'basket',
-	initialState: {
-		isLoading: true,
-		data: null,
-		error: null,
-	},
+	initialState,
 	reducers: {
-		setLoadingBasket: (state, action) => {
-			state.isLoading = action.payload
+		startLoadingBasket: state => {
+			state.isLoading = true
+			state.error = null
 		},
 
-		setBasket: (state, action) => {
-			state.data = action.payload
+		updateBasket: (state, action) => {
+			return { ...state, isLoading: false, ...action.payload }
 		},
-		setErrorBasket: (state, action) => {
+
+		errorBasket: (state, action) => {
+			state.isLoading = false
 			state.error = action.payload
+		},
+		resetBasket: () => {
+			return { ...initialState, isLoading: false }
 		},
 	},
 })
 
-export const { setBasket, setLoadingBasket, setErrorBasket } =
+export const { startLoadingBasket, errorBasket, updateBasket, resetBasket } =
 	basketSlice.actions

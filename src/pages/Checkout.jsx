@@ -1,4 +1,4 @@
-import { Box, Grid, Text } from '@chakra-ui/react'
+import { Box, Grid, Text, Spinner } from '@chakra-ui/react'
 import { Container } from '../components'
 import {
 	BasketGrid,
@@ -8,8 +8,10 @@ import {
 	SectionAddress,
 	SectionPayment,
 } from '../layouts'
+import { useSelector } from 'react-redux'
 
 export const Checkout = () => {
+	const { basket } = useSelector(state => state)
 	return (
 		<>
 			<HeaderBack />
@@ -20,7 +22,9 @@ export const Checkout = () => {
 					gap: '1rem',
 				}}
 			>
-				<Grid sx={{ flex: '3 0 min(100%, 30rem)', gap: '1rem' }}>
+				<Grid
+					sx={{ flex: '3 0 min(100%, 30rem)', gap: '1rem', marginTop: '1rem' }}
+				>
 					<SectionAddress />
 					<SectionPayment />
 					<Box
@@ -38,7 +42,10 @@ export const Checkout = () => {
 						>
 							Productos
 						</Text>
-						<BasketGrid />
+						{basket.isLoading && (
+							<Spinner size='xl' sx={{ marginLeft: 'calc(50% - 1.5rem)' }} />
+						)}
+						{!basket.isLoading && basket.data?.items && <BasketGrid />}
 					</Box>
 				</Grid>
 				<BasketTotal />
