@@ -11,8 +11,10 @@ import { RadioAddress } from './RadioAddress'
 export const FormAddresses = ({
 	handleSubmit,
 	onSubmit,
+	isLoading = false,
 	addresses,
 	onEditAddress,
+	onDeleteAddress,
 	register,
 	sx,
 	props,
@@ -38,6 +40,7 @@ export const FormAddresses = ({
 						key={address.id}
 						{...address}
 						onEditAddress={onEditAddress}
+						onDeleteAddress={onDeleteAddress}
 						register={register}
 					/>
 				))}
@@ -48,7 +51,7 @@ export const FormAddresses = ({
 				<Button size='lg' colorScheme='gray' type='button' onClick={onOpen}>
 					Nueva dirección
 				</Button>
-				<Button size='lg' type='submit'>
+				<Button size='lg' type='submit' isLoading={isLoading}>
 					Confirmar dirección
 				</Button>
 			</Flex>

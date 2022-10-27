@@ -8,6 +8,7 @@ import { AlertErrorWithReload } from './AlertErrorWithReload'
 import { AddressCard } from './AddressCard'
 import { FormAddressSelection } from './FormAddressSelection'
 import { setBasketAddressId } from '../store/slices/basket'
+import { Navigate } from 'react-router-dom'
 
 export const SectionAddress = () => {
 	const dispatch = useDispatch()
@@ -21,7 +22,7 @@ export const SectionAddress = () => {
 		dispatch(getAddressesThunk(uid))
 	}, [uid])
 
-	if (basket.isLoading || address.isLoading)
+	if (basket.isLoading || addresses.isLoading)
 		return (
 			<Section>
 				<Text
@@ -48,6 +49,9 @@ export const SectionAddress = () => {
 				<AlertErrorWithReload error={basket.error || basket.error} />
 			</Section>
 		)
+
+	if (!basket.isLoading && !basket.items.length)
+		return <Navigate to='/' replace />
 
 	return (
 		<Section>

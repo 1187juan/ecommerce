@@ -1,4 +1,8 @@
-import { getAddresses, setItemById } from '../../../helpers'
+import {
+	getAddresses,
+	setItemById,
+	deleteAddress as deleteAddressDb,
+} from '../../../helpers'
 import {
 	errorAddresses,
 	resetAddresses,
@@ -40,6 +44,21 @@ export const setAddress = (uid, addressWithId) => {
 			await setAddress(uid, address)
 
 			dispatch(setAddressesItems(addresses))
+		} catch ({ message }) {
+			dispatch(errorAddresses(message))
+		}
+	}
+}
+
+export const deleteAddress = (uid, addressId) => {
+	return async (dispatch, getState) => {
+		try {
+			const { addresses } = getState()
+			dispatch(startLoadingAddresses())
+			await deleteAddressDb(uid, addressId)
+			const items = addresses.items.filter(({ id }) => id !== addressId)
+
+			dispatch(setAddressesItems(items))
 		} catch ({ message }) {
 			dispatch(errorAddresses(message))
 		}

@@ -1,4 +1,4 @@
-import { Button, Grid, Text } from '@chakra-ui/react'
+import { Button, Flex, Grid, Text } from '@chakra-ui/react'
 import { RadioCard } from '../../components'
 
 export const RadioAddress = ({
@@ -10,6 +10,7 @@ export const RadioAddress = ({
 	nameAndSurname,
 	phoneNumber,
 	onEditAddress,
+	onDeleteAddress,
 }) => {
 	return (
 		<RadioCard
@@ -29,13 +30,23 @@ export const RadioAddress = ({
 					<br />
 					{nameAndSurname} - {phoneNumber}
 				</Text>
-				<Button
-					variant='link'
-					sx={{ width: 'max-content' }}
-					onClick={() => onEditAddress(id)}
-				>
-					Editar
-				</Button>
+				<Flex sx={{ gap: '1rem' }}>
+					<Button
+						variant='link'
+						sx={{ width: 'max-content' }}
+						onClick={() => onEditAddress(id)}
+					>
+						Editar
+					</Button>
+					<Button
+						variant='link'
+						sx={{ width: 'max-content' }}
+						onClick={() => onDeleteAddress(id)}
+						colorScheme='red'
+					>
+						Eliminar
+					</Button>
+				</Flex>
 			</Grid>
 		</RadioCard>
 	)

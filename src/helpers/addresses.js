@@ -1,5 +1,6 @@
 import {
 	collection,
+	deleteDoc,
 	doc,
 	getDoc,
 	getDocs,
@@ -37,4 +38,9 @@ export const setAddress = async (uid, address) => {
 	await setDoc(addressRef, addressWithoutId)
 
 	return { uid, address: newAddress }
+}
+
+export const deleteAddress = async (uid, addressId) => {
+	const addressRef = doc(db, `users/${uid}/addresses`, addressId)
+	await deleteDoc(addressRef)
 }

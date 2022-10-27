@@ -12,7 +12,7 @@ import { FormAddresses } from './FormAddresses'
 import { CardNewAddress } from './CardNewAddress'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateBasket } from '../../store/slices/basket'
-import { setAddressesItems } from '../../store/slices/addresses'
+import { deleteAddress, setAddressesItems } from '../../store/slices/addresses'
 
 export const FormAddressSelection = ({ sx = {}, ...props }) => {
 	const dispatch = useDispatch()
@@ -28,6 +28,9 @@ export const FormAddressSelection = ({ sx = {}, ...props }) => {
 	const onEditAddress = addressId => {
 		setAddressToEdit(searchItemById(addressId, addresses.items))
 		onOpen()
+	}
+	const onDeleteAddress = addressId => {
+		dispatch(deleteAddress(uid, addressId))
 	}
 
 	const onSubmitAddresses = async ({ addressId }) => {
@@ -68,7 +71,9 @@ export const FormAddressSelection = ({ sx = {}, ...props }) => {
 					addresses={addresses.items}
 					onSubmit={onSubmitAddresses}
 					onEditAddress={onEditAddress}
+					onDeleteAddress={onDeleteAddress}
 					onOpen={onOpen}
+					isLoading={isLoading}
 					sx={sx}
 					props={props}
 				/>

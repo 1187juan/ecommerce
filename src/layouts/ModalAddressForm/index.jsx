@@ -27,7 +27,7 @@ export const ModalAddressForm = ({
 		},
 	})
 
-	const { setValue, getValues, clearErrors } = formMethods
+	const { setValue, getValues, clearErrors, reset } = formMethods
 	const title = defaultAddress ? 'Actualizar dirección' : 'Nueva dirección'
 
 	const statePostalCode = usePostalCodeData(getValues('postalCode'), {
@@ -54,7 +54,14 @@ export const ModalAddressForm = ({
 	}
 
 	return (
-		<Modal isOpen={isOpen} onClose={onClose} onCloseComplete={onCloseComplete}>
+		<Modal
+			isOpen={isOpen}
+			onClose={onClose}
+			onCloseComplete={() => {
+				reset()
+				onCloseComplete()
+			}}
+		>
 			<ModalOverlay />
 			<ModalContent sx={{ backgroundColor: 'surface' }}>
 				<ModalHeader>{title}</ModalHeader>
