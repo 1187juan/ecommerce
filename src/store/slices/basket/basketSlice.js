@@ -1,15 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
-import addressTemplate from '../../../data/addressTemplate.json'
-import creditCardTemplate from '../../../data/creditCardTemplate.json'
 
 const initialState = {
 	isLoading: true,
 	items: [],
 	itemsDetails: [],
 	addressId: null,
-	address: addressTemplate,
 	creditCardId: null,
-	creditCard: creditCardTemplate,
 	error: null,
 }
 export const basketSlice = createSlice({

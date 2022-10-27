@@ -1,4 +1,4 @@
-export const deleteProperty = (prop, obj) => {
+export const deleteProp = (prop, obj) => {
 	const newObj = { ...obj }
 	delete newObj[prop]
 	return newObj

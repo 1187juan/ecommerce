@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useIinitializeBasket } from '../hooks'
 import {
 	LayoutAuth,
+	LayoutCheckout,
 	LayoutHome,
 	LayoutProducts,
 	LayoutToHome,
@@ -45,10 +46,12 @@ export const AppRouter = () => {
 					</Route>
 				</Route>
 
-				{/* <Route element={<PrivateRoutes />}>
-					<Route path='/account' element={<div>account</div>} />
-					<Route path='/checkout' element={<Checkout />} />
-				</Route> */}
+				<Route element={<PrivateRoutes />}>
+					<Route element={<LayoutCheckout />}>
+						<Route path='/account' element={<div>account</div>} />
+						<Route path='/checkout' element={<Checkout />} />
+					</Route>
+				</Route>
 
 				<Route path='/tests' element={<Tests />} />
 				<Route element={<LayoutToHome />}>

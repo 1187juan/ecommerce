@@ -8,7 +8,7 @@ import { DrawerBasket } from '../DrawerBasket'
 export const BasketNav = ({ colorScheme }) => {
 	const auth = useSelector(state => state.auth)
 	const basket = useSelector(state => state.basket)
-	const { isOpen, onClose, onOpen } = useDisclosure({ defaultIsOpen: true })
+	const { isOpen, onClose, onOpen } = useDisclosure()
 	const navigate = useNavigate()
 	const itemsNumber = basket.items.length
 

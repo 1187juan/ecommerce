@@ -1,4 +1,4 @@
-import { doc, getDoc } from 'firebase/firestore'
+import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import { db } from '../firebase'
 
 export const getBasket = async basketId => {
@@ -12,4 +12,11 @@ export const getBasket = async basketId => {
 	}
 
 	return basketRes.data()
+}
+
+export const updateBasket = async (basketId, data) => {
+	const basketRef = doc(db, 'baskets', basketId)
+	await updateDoc(basketRef, data)
+
+	return { basketId, data }
 }

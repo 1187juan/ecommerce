@@ -1,43 +1,29 @@
-import { Box, Spinner, Text, useToast } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { Spinner, Text } from '@chakra-ui/react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAddresses, searchItemById } from '../helpers'
-import { setAddresses } from '../store/slices/addresses'
+import { Section } from '../components'
+import { searchItemById } from '../helpers'
+import { getAddressesThunk } from '../store/slices/addresses'
+import { AlertErrorWithReload } from './AlertErrorWithReload'
 import { AddressCard } from './AddressCard'
 import { FormAddressSelection } from './FormAddressSelection'
+import { setBasketAddressId } from '../store/slices/basket'
 
 export const SectionAddress = () => {
-	const {
-		basket,
-		addresses,
-		auth: { uid },
-	} = useSelector(state => state)
-
 	const dispatch = useDispatch()
-	const toast = useToast()
-	const [isLoading, setIsLoading] = useState(true)
-	const addressId = basket.data?.addressId ?? null
-	const address = searchItemById(addressId, addresses)
+	const uid = useSelector(({ auth }) => auth.uid)
+	const addresses = useSelector(({ addresses }) => addresses)
+	const basket = useSelector(({ basket }) => basket)
+	const address = searchItemById(basket.addressId, addresses.items)
+	const onChangeAddress = () => dispatch(setBasketAddressId(uid, null))
 
 	useEffect(() => {
-		getAddresses(uid)
-			.then(data => dispatch(setAddresses(data)))
-			.catch(({ message }) =>
-				toast({ status: 'error', title: message, isClosable: true })
-			)
-			.finally(() => setIsLoading(false))
+		dispatch(getAddressesThunk(uid))
 	}, [uid])
 
-	if (isLoading)
+	if (basket.isLoading || address.isLoading)
 		return (
-			<Box
-				as='section'
-				sx={{
-					padding: '1rem',
-					backgroundColor: 'surface',
-					borderRadius: '.25rem',
-				}}
-			>
+			<Section>
 				<Text
 					fontSize='2xl'
 					fontWeight='semibold'
@@ -45,31 +31,35 @@ export const SectionAddress = () => {
 				>
 					Dirección
 				</Text>
-				{isLoading && (
-					<Spinner size='xl' sx={{ marginLeft: 'calc(50% - 1.5rem)' }} />
-				)}
-			</Box>
+				<Spinner size='xl' sx={{ marginLeft: 'calc(50% - 1.5rem)' }} />
+			</Section>
+		)
+
+	if (basket.error || basket.error)
+		return (
+			<Section>
+				<Text
+					fontSize='2xl'
+					fontWeight='semibold'
+					sx={{ marginBottom: '1rem' }}
+				>
+					Dirección
+				</Text>
+				<AlertErrorWithReload error={basket.error || basket.error} />
+			</Section>
 		)
 
 	return (
-		<Box
-			as='section'
-			sx={{
-				padding: '1rem',
-				backgroundColor: 'surface',
-				borderRadius: '.25rem',
-			}}
-		>
+		<Section>
 			<Text fontSize='2xl' fontWeight='semibold' sx={{ marginBottom: '1rem' }}>
 				Dirección
 			</Text>
-			{addressId && (
-				<AddressCard
-					{...address}
-					onChange={() => console.log('change address')}
-				/>
+
+			{basket.addressId && (
+				<AddressCard {...address} onChange={onChangeAddress} />
 			)}
-			{!addressId && <FormAddressSelection />}
-		</Box>
+
+			{!basket.addressId && <FormAddressSelection />}
+		</Section>
 	)
 }

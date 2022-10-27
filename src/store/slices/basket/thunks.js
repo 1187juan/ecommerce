@@ -1,13 +1,12 @@
 import { doc, Timestamp, updateDoc } from 'firebase/firestore'
 import { db } from '../../../firebase'
 import {
-	getAddress,
 	getBasket,
 	getProductsById,
 	retry,
 	searchItemById,
+	updateBasket as updateBasketDB,
 } from '../../../helpers'
-import { getCreditCard } from '../../../helpers/creditCards'
 import {
 	errorBasket,
 	resetBasket,
@@ -34,19 +33,10 @@ export const initializeBasket = basketId => {
 				return { ...productRes, data: { ...productRes.data, ...item } }
 			})
 
-			const address =
-				basket.addressId && (await getAddress(basketId, basket.addressId))
-
-			const creditCard =
-				basket.creditCardId &&
-				(await getCreditCard(basketId, basket.creditCardId))
-
 			dispatch(
 				updateBasket({
 					...basket,
 					itemsDetails,
-					address,
-					creditCard,
 				})
 			)
 		} catch ({ message }) {
@@ -89,6 +79,19 @@ export const setBasketItem = basketItem => {
 			dispatch(updateBasket({ items, itemsDetails }))
 		} catch ({ message }) {
 			dispatch(errorBasket())
+		}
+	}
+}
+
+export const setBasketAddressId = (uid, addressId) => {
+	return async dispatch => {
+		try {
+			dispatch(startLoadingBasket())
+			if (!uid) return dispatch(resetBasket())
+			await updateBasketDB(uid, { addressId })
+			dispatch(updateBasket({ addressId }))
+		} catch ({ message }) {
+			dispatch(errorBasket(message))
 		}
 	}
 }

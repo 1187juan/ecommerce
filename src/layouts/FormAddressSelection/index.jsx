@@ -2,50 +2,58 @@ import { useDisclosure, useToast } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { ModalAddressForm } from '../../layouts'
-import { deleteProperty, searchItemById, setItemById } from '../../helpers'
+import {
+	searchItemById,
+	setAddress,
+	setItemById,
+	updateBasket as updateBasketDb,
+} from '../../helpers'
 import { FormAddresses } from './FormAddresses'
 import { CardNewAddress } from './CardNewAddress'
 import { useDispatch, useSelector } from 'react-redux'
-import { collection, setDoc, doc, Timestamp } from 'firebase/firestore'
-import { db } from '../../firebase'
-import { nanoid } from 'nanoid'
-import { setAddresses } from '../../store/slices/addresses'
+import { updateBasket } from '../../store/slices/basket'
+import { setAddressesItems } from '../../store/slices/addresses'
 
 export const FormAddressSelection = ({ sx = {}, ...props }) => {
-	const { addresses, auth } = useSelector(state => state)
 	const dispatch = useDispatch()
+	const uid = useSelector(state => state.auth.uid)
+	const addresses = useSelector(state => state.addresses)
+	const hasAddresses = Boolean(addresses.items.length)
 	const toast = useToast()
 	const [isLoading, setIsLoading] = useState(false)
-	const hasAddresses = Boolean(addresses.length)
 	const formMethods = useForm()
 	const { isOpen, onClose, onOpen } = useDisclosure()
 	const [addressToEdit, setAddressToEdit] = useState(null)
 
 	const onEditAddress = addressId => {
-		setAddressToEdit(searchItemById(addressId, addresses))
+		setAddressToEdit(searchItemById(addressId, addresses.items))
 		onOpen()
 	}
 
-	const onSubmitAddresses = ({ addressId }) => {
-		const address = searchItemById(addressId, addresses)
-	}
-
-	const onSubmitAddress = async data => {
+	const onSubmitAddresses = async ({ addressId }) => {
 		try {
 			setIsLoading(true)
-			const addressesRef = collection(db, `users/${auth.uid}/addresses`)
-			const addressId = data.id ?? nanoid()
-			data.latUpdate = Timestamp.now()
-			const address = { ...data, id: addressId }
-			const addressWithoutId = deleteProperty('id', data)
+			await updateBasketDb(uid, { addressId })
+			dispatch(updateBasket({ addressId }))
+		} catch ({ message }) {
+			toast({
+				status: 'error',
+				title: message,
+				isClosable: true,
+			})
+			setIsLoading(false)
+		}
+	}
 
-			await setDoc(doc(addressesRef, addressId), addressWithoutId)
-			const newAddresses = setItemById(address, addresses).sort(
+	const onSubmitAddress = async addressBefore => {
+		try {
+			setIsLoading(true)
+			const { address } = await setAddress(uid, addressBefore)
+			const newAddresses = setItemById(address, addresses.items).sort(
 				(a, b) => b.lastUpdate - a.lastUpdate
 			)
-
-			dispatch(setAddresses(newAddresses))
 			onClose()
+			dispatch(setAddressesItems(newAddresses))
 		} catch ({ message }) {
 			toast({ status: 'error', title: message, isClosable: true })
 		}
@@ -57,7 +65,7 @@ export const FormAddressSelection = ({ sx = {}, ...props }) => {
 			{hasAddresses && (
 				<FormAddresses
 					{...formMethods}
-					addresses={addresses}
+					addresses={addresses.items}
 					onSubmit={onSubmitAddresses}
 					onEditAddress={onEditAddress}
 					onOpen={onOpen}
@@ -68,16 +76,15 @@ export const FormAddressSelection = ({ sx = {}, ...props }) => {
 
 			{!hasAddresses && <CardNewAddress onOpen={onOpen} />}
 
-			{isOpen && (
-				<ModalAddressForm
-					onClose={onClose}
-					isOpen={isOpen}
-					onCloseComplete={() => setAddressToEdit(null)}
-					defaultAddress={addressToEdit}
-					isLoading={isLoading}
-					onSubmit={onSubmitAddress}
-				/>
-			)}
+			<ModalAddressForm
+				key={addressToEdit?.id}
+				onClose={onClose}
+				isOpen={isOpen}
+				onCloseComplete={() => setAddressToEdit(null)}
+				defaultAddress={addressToEdit}
+				isLoading={isLoading}
+				onSubmit={onSubmitAddress}
+			/>
 		</>
 	)
 }

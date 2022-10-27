@@ -1,5 +1,14 @@
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore'
+import {
+	collection,
+	doc,
+	getDoc,
+	getDocs,
+	setDoc,
+	Timestamp,
+} from 'firebase/firestore'
+import { nanoid } from 'nanoid'
 import { db } from '../firebase'
+import { deleteProp } from './deleteProp'
 import { returnDocs } from './returnDocs'
 
 export const getAddresses = async uid => {
@@ -17,4 +26,15 @@ export const getAddress = async (uid, addressId) => {
 
 	if (!addressRes.exists()) throw new Error('La dirección no existe.')
 	return { id: addressId, ...addressRes.data() }
+}
+export const setAddress = async (uid, address) => {
+	const newAddress = { ...address }
+	newAddress.id ??= nanoid()
+	newAddress.lastUpdate = Timestamp.now()
+	const addressRef = doc(db, `users/${uid}/addresses`, newAddress.id)
+	const addressWithoutId = deleteProp('id', newAddress)
+
+	await setDoc(addressRef, addressWithoutId)
+
+	return { uid, address: newAddress }
 }
