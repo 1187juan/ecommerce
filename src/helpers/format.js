@@ -63,8 +63,6 @@ export const formatCardExpiredDate = (value, { autocomplete = false } = {}) => {
 		)
 	}
 
-	console.log(year)
-
 	const diagonal =
 		year || (month.length === 2 && !hasDiagonal && !year) ? '/' : ''
 

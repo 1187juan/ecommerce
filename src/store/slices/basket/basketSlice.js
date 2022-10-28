@@ -5,7 +5,6 @@ const initialState = {
 	items: [],
 	itemsDetails: [],
 	addressId: null,
-	creditCardId: null,
 	error: null,
 }
 export const basketSlice = createSlice({

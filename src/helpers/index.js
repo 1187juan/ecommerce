@@ -1,7 +1,6 @@
 export * from './addresses'
 export * from './asCurrency'
 export * from './basket'
-export * from './creditCards'
 export * from './deleteProp'
 export * from './format'
 export * from './getInfoPostalCode'
