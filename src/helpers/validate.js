@@ -34,3 +34,11 @@ export const validateProductId = value => {
 	const regEx = /^\d{5}$/
 	return regEx.test(value)
 }
+
+export const validateCreditCard = creditCard => {
+	return (
+		validateCardNumber(creditCard.number) &&
+		validateCardExpirationDate(creditCard.expirationDate) &&
+		validateCardCCV(creditCard.ccv)
+	)
+}

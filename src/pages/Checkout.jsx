@@ -1,7 +1,7 @@
 import { Grid } from '@chakra-ui/react'
 import { Container } from '../components'
 import {
-	// BasketTotal,
+	BasketTotal,
 	SectionAddress,
 	SectionBasket,
 	SectionPayment,
@@ -24,7 +24,7 @@ export const Checkout = () => {
 					<SectionPayment />
 					<SectionBasket />
 				</Grid>
-				{/* <BasketTotal /> */}
+				<BasketTotal />
 			</Container>
 		</>
 	)

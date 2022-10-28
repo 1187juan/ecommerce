@@ -9,21 +9,67 @@ import {
 	Divider,
 	Grid,
 	Text,
+	useToast,
 } from '@chakra-ui/react'
-import basketIds from '../data/basketIds'
-import products from '../data/products.json'
 import { useVerticalStickyPlus } from '../hooks'
-import { asCurrency } from '../helpers'
+import {
+	asCurrency,
+	resetBasket as resetBasketDb,
+	validateCreditCard,
+} from '../helpers'
+import { useDispatch, useSelector } from 'react-redux'
+import { resetBasket } from '../store/slices/basket'
+import { useState } from 'react'
 
 export const BasketTotal = ({ position = 'sticky' } = {}) => {
+	const dispatch = useDispatch()
 	const [sectionRef] = useVerticalStickyPlus({ range: -64 })
+	const uid = useSelector(({ auth }) => auth.uid)
+	const basket = useSelector(({ basket }) => basket)
+	const creditCard = useSelector(({ creditCard }) => creditCard)
+	const [isLoading, setIsLoading] = useState(false)
+	const toast = useToast()
 	let subTotal = 0
-	basketIds.forEach(
-		({ id, quantity }) =>
-			(subTotal += products.find(product => product.id === id).price * quantity)
-	)
+
+	basket.itemsDetails
+		.filter(({ status }) => status === 'success')
+		.forEach(
+			({ data: { quantity, price } }) => (subTotal += quantity * price.value)
+		)
+
 	const subTotalAscurrency = asCurrency(subTotal)
+	const hasAddress = Boolean(basket.addressId)
+	const hasCreditCard = validateCreditCard(creditCard)
 	const hasFreeShipping = subTotal >= 200
+
+	const onBuy = async () => {
+		try {
+			setIsLoading(true)
+			await resetBasketDb(uid)
+			dispatch(resetBasket())
+			setIsLoading(false)
+			toast({
+				status: 'success',
+				title: 'Compra exitosa!',
+				isClosable: true,
+			})
+			toast({
+				status: 'info',
+				title: 'Gracias por completar la compra!',
+				description:
+					'Vaciamos el carrito de compra para que puedas seguir probando la aplicación web.',
+				isClosable: true,
+				duration: null,
+			})
+		} catch ({ message }) {
+			setIsLoading(false)
+			toast({
+				status: 'error',
+				title: message,
+				isClosable: true,
+			})
+		}
+	}
 
 	return (
 		<Grid
@@ -76,8 +122,10 @@ export const BasketTotal = ({ position = 'sticky' } = {}) => {
 			)}
 			<Button
 				size='lg'
-				disabled={!hasFreeShipping}
+				disabled={!(hasFreeShipping && hasCreditCard && hasAddress)}
 				sx={{ width: 'min(100%, 32rem)', margin: 'auto' }}
+				isLoading={basket.isLoading || isLoading}
+				onClick={onBuy}
 			>
 				Comprar
 			</Button>

@@ -20,3 +20,11 @@ export const updateBasket = async (basketId, data) => {
 
 	return { basketId, data }
 }
+
+export const resetBasket = async uid => {
+	const basketRef = doc(db, 'baskets', uid)
+	await updateDoc(basketRef, {
+		items: [],
+		addressId: null,
+	})
+}
