@@ -38,7 +38,7 @@ export const DrawerBasket = ({ isOpen, onClose, navigate }) => {
 			placement={isMobile ? 'bottom' : 'right'}
 		>
 			<DrawerOverlay />
-			<DrawerContent sx={{ backgroundColor: 'surface' }}>
+			<DrawerContent sx={{ backgroundColor: 'surface', height: '100%' }}>
 				<DrawerCloseButton />
 				<DrawerHeader>Carrito de compras</DrawerHeader>
 				<DrawerBody>
