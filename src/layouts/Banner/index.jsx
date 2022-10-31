@@ -67,8 +67,8 @@ export const Banner = () => {
 						</Box>
 					</Heading>
 					<Text>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus,
-						rerum magni laudantium placeat.
+						Disfruta de la originalidad de nuestros productos que harán la vida
+						en tu hogar más cómoda.
 					</Text>
 				</Box>
 				<Grid

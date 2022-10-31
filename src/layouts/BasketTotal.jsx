@@ -48,11 +48,7 @@ export const BasketTotal = ({ position = 'sticky' } = {}) => {
 			await resetBasketDb(uid)
 			dispatch(resetBasket())
 			setIsLoading(false)
-			toast({
-				status: 'success',
-				title: 'Compra exitosa!',
-				isClosable: true,
-			})
+
 			toast({
 				status: 'info',
 				title: 'Gracias por completar la compra!',
