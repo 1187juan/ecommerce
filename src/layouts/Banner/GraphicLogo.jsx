@@ -1,6 +1,5 @@
 import { Flex, Image } from '@chakra-ui/react'
 import { LogoBetterWareIcon } from '../../components'
-import energyBall from '../../assets/banner/energy-ball.webp'
 
 export const GraphicLogo = () => {
 	return (
@@ -18,7 +17,7 @@ export const GraphicLogo = () => {
 			}}
 		>
 			<Image
-				src={energyBall}
+				src='https://firebasestorage.googleapis.com/v0/b/ecommerce-5f57e.appspot.com/o/banner%2Fenergy-ball.webp?alt=media&token=ff7ff84d-dc24-4e71-8358-249f4d3f3372'
 				alt='energy ball'
 				sx={{
 					position: 'absolute',

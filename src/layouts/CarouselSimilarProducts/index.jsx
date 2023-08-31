@@ -1,8 +1,9 @@
-import { Text, Spinner } from '@chakra-ui/react'
+import { Text } from '@chakra-ui/react'
 import { Container, ProductCard } from '../../components'
 import { Carousel } from './Carousel'
 import { useGetProductsRandomQuery } from '../../store/apis/products'
 import { AlertErrorWithReload } from '../AlertErrorWithReload'
+import { CustomSkeleton } from './CustomSkeleton'
 
 export const CarouselSimilarProducts = ({ productId }) => {
 	const {
@@ -11,8 +12,7 @@ export const CarouselSimilarProducts = ({ productId }) => {
 		error,
 	} = useGetProductsRandomQuery(productId)
 
-	if (isLoading)
-		return <Spinner size='xl' sx={{ marginLeft: 'calc(50% - 2rem)' }} />
+	if (isLoading) return <CustomSkeleton />
 
 	if (error) return <AlertErrorWithReload error={error} />
 

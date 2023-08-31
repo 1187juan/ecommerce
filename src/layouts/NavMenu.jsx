@@ -19,6 +19,7 @@ export const NavMenu = ({ colorScheme = 'gray' }) => {
 			<Box
 				as={Link}
 				to='/'
+				onClick={() => window.scrollTo(0, 0)}
 				sx={{
 					'svg:first-of-type': {
 						display: ['block', 'none'],

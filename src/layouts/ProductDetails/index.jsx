@@ -2,15 +2,14 @@ import { Container } from '../../components'
 import { CarouselImages, AlertErrorWithReload } from '../../layouts'
 import { Details } from './Details'
 import { useGetProductQuery } from '../../store/apis/products'
-import { Spinner } from '@chakra-ui/react'
 import { Navigate } from 'react-router-dom'
 import { nanoid } from 'nanoid'
+import { CustomSkeleton } from './CustomSkeleton'
 
 export const ProductDetails = ({ productId }) => {
 	const { data: product, isLoading, error } = useGetProductQuery(productId)
 
-	if (isLoading)
-		return <Spinner size='xl' sx={{ marginLeft: 'calc(50% - 2rem)' }} />
+	if (isLoading) return <CustomSkeleton />
 
 	if (!product) return <Navigate to='error-404' replace />
 

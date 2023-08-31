@@ -6,7 +6,7 @@ import {
 	Text,
 	useColorModeValue,
 } from '@chakra-ui/react'
-import model from '../../assets/banner/model.webp'
+
 import { Graphic } from './Graphic'
 import { Container } from '../../components'
 
@@ -83,11 +83,15 @@ export const Banner = () => {
 				>
 					<Graphic />
 					<Image
-						src={model}
+						src={
+							'https://firebasestorage.googleapis.com/v0/b/ecommerce-5f57e.appspot.com/o/banner%2Fmodel.webp?alt=media&token=633511e8-b004-4874-b50f-8349efc6d984'
+						}
 						alt='model'
+						width='100%'
 						sx={{
 							gridColumnStart: 2,
-							pt: '20%',
+							mt: '20%',
+							aspectRatio: '992 / 824',
 						}}
 					/>
 				</Grid>

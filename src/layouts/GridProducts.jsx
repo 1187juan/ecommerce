@@ -2,7 +2,8 @@ import { Container, ProductCard } from '../components'
 import { useGetProductsQuery } from '../store/apis/products'
 import { Pagination, AlertErrorWithReload } from '../layouts'
 import { useNavigate } from 'react-router-dom'
-import { Spinner } from '@chakra-ui/react'
+
+import { ProductCardSkeleton } from '../components/ProductCardSkeleton'
 
 export const GridProducts = ({ page = 1 }) => {
 	const { data, isLoading, error } = useGetProductsQuery(page)
@@ -10,7 +11,23 @@ export const GridProducts = ({ page = 1 }) => {
 	const setPage = page => navigate('/' + page)
 
 	if (isLoading)
-		return <Spinner size='xl' sx={{ marginLeft: 'calc(50% - 2rem)' }} />
+		return (
+			<Container
+				sx={{
+					display: 'grid',
+					gridTemplateColumns:
+						'repeat(auto-fill, minmax(min(100%, 250px), 1fr))',
+					gap: '1rem',
+					marginTop: '1rem',
+				}}
+			>
+				{Array(21)
+					.fill('')
+					.map((_, i) => (
+						<ProductCardSkeleton key={i} />
+					))}
+			</Container>
+		)
 
 	if (error) return <AlertErrorWithReload error={error} />
 

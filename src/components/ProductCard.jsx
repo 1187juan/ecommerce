@@ -21,7 +21,12 @@ export const ProductCard = ({
 			{...props}
 		>
 			<Link to={'/product/' + id}>
-				<Image src={imgUrl} alt={name} boxSize='100%' />
+				<Image
+					src={imgUrl}
+					alt={name}
+					boxSize='100%'
+					sx={{ aspectRatio: '1 / 1', bgColor: 'outline' }}
+				/>
 			</Link>
 			<Flex
 				sx={{

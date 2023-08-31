@@ -34,7 +34,7 @@ export const Details = ({
 					color: 'onSurfaceMedium',
 				}}
 			>
-				Código 1922
+				Código {id}
 			</Text>
 			<Heading>{name}</Heading>
 			<Text>

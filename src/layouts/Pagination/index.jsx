@@ -2,8 +2,14 @@ import { Button, Flex, IconButton, Text } from '@chakra-ui/react'
 import { ChevronLeftIcon, ChevronRightIcon } from '../../boxicons'
 
 export const Pagination = ({ sx, page, totalPages, setPage }) => {
-	const onNext = () => setPage(page + 1)
-	const onPrevious = () => setPage(page - 1)
+	const onNext = () => {
+		setPage(page + 1)
+		window.scrollTo(0, 0)
+	}
+	const onPrevious = () => {
+		setPage(page - 1)
+		window.scrollTo(0, 0)
+	}
 
 	return (
 		<Flex
