@@ -15,8 +15,10 @@ export const GridProducts = ({ page = 1 }) => {
 			<Container
 				sx={{
 					display: 'grid',
-					gridTemplateColumns:
+					gridTemplateColumns: [
+						'column',
 						'repeat(auto-fill, minmax(min(100%, 250px), 1fr))',
+					],
 					gap: '1rem',
 					marginTop: '1rem',
 				}}
@@ -37,7 +39,10 @@ export const GridProducts = ({ page = 1 }) => {
 		<Container
 			sx={{
 				display: 'grid',
-				gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 250px), 1fr))',
+				gridTemplateColumns: [
+					'column',
+					'repeat(auto-fill, minmax(min(100%, 250px), 1fr))',
+				],
 				gap: '1rem',
 				marginTop: '1rem',
 			}}

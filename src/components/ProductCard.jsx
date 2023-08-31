@@ -4,6 +4,7 @@ import { asCurrency } from '../helpers'
 
 export const ProductCard = ({
 	product: { name, imgUrl, price, id },
+	isVertival = false,
 	sx,
 	...props
 }) => {
@@ -13,8 +14,11 @@ export const ProductCard = ({
 		<Grid
 			as='article'
 			sx={{
+				gridTemplateColumns: isVertival ? '1fr' : ['2fr 3fr', '1fr'],
+				gridAutoFlow: isVertival ? 'row' : ['column', 'row'],
 				backgroundColor: 'surface',
 				borderRadius: 'base',
+				overflow: 'hidden',
 				shadow: 'xl',
 				...sx,
 			}}
@@ -29,18 +33,21 @@ export const ProductCard = ({
 				/>
 			</Link>
 			<Flex
+				as={Link}
+				to={'/product/' + id}
 				sx={{
+					flexDirection: isVertival ? 'column' : ['column', 'row'],
+					justifyContent: isVertival ? 'start' : ['center', 'start'],
 					columnGap: '1rem',
 					padding: '1rem',
-					flexWrap: 'wrap',
 				}}
 			>
 				<Text
 					as='h1'
 					sx={{
-						flex: '1 1 150px',
+						flexGrow: [0, 1],
 						fontSize: 'base',
-						noOfLines: 1,
+						noOfLines: isVertival ? 1 : [2, 1],
 					}}
 				>
 					{name}

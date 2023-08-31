@@ -34,6 +34,7 @@ export const CarouselSimilarProducts = ({ productId }) => {
 					<ProductCard
 						key={index}
 						product={products}
+						isVertival={true}
 						sx={{
 							width: '35vmin',
 						}}

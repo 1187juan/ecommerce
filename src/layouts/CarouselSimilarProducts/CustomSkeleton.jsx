@@ -22,6 +22,7 @@ export const CustomSkeleton = () => {
 					.fill('')
 					.map((_, i) => (
 						<ProductCardSkeleton
+							isVertical={true}
 							key={i}
 							sx={{
 								width: '35vmin',
