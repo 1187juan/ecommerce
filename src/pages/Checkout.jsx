@@ -6,8 +6,12 @@ import {
 	SectionBasket,
 	SectionPayment,
 } from '../layouts'
+import { useEffect } from 'react'
 
 export const Checkout = () => {
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	}, [])
 	return (
 		<>
 			<Container
